@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
-	Queries query = new Queries();
 	WinnerDetection winDetection = new WinnerDetection();
 	Ellipse2D.Double ellipse[][] = new Ellipse2D.Double[20][20];
 	static int[][] bwMatrix = new int[19][19];
@@ -27,7 +26,7 @@ public class GamePanel extends JPanel {
 	Graphics2D g2;
 
 	public void drawPanel() {
-		for (int i = 0; i < bwMatrix.length; i++) { // --------> ÀÌ°Å reset´©¸£¸é ÃÊ±âÈ­µÇ´ÂÁö È®ÀÎ ÇÊ¿ä
+		for (int i = 0; i < bwMatrix.length; i++) { // --------> ï¿½Ì°ï¿½ resetï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ç´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½Ê¿ï¿½
 			for (int j = 0; j < bwMatrix[0].length; j++) {
 				bwMatrix[i][j] = -1;
 			}
@@ -51,13 +50,13 @@ public class GamePanel extends JPanel {
 				for (int i = 0; i < 20; i++) {
 					for (int j = 0; j < 20; j++) {
 						if (ellipse[i][j].contains(e.getPoint())) {
-							for (int j2 = 0; j2 < Memory.points.size(); j2++) { // Áßº¹ ÆÇ´Ü
+							for (int j2 = 0; j2 < Memory.points.size(); j2++) { // ï¿½ßºï¿½ ï¿½Ç´ï¿½
 								if (Memory.points.get(j2).i == i && Memory.points.get(j2).j == j) {
 									return;
 								}
 							}
 							Color color;
-							if (Memory.points.size() - Frame.blockCount == 0) { // ¹ÙµÏµ¹ »ö»ó ¼³Á¤
+							if (Memory.points.size() - Frame.blockCount == 0) { // ï¿½ÙµÏµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //								color = Color.BLACK;
 //								bwMatrix[i][j] = 1;
 								if(Frame.swap) {
@@ -89,14 +88,14 @@ public class GamePanel extends JPanel {
 								}
 							}
 
-							if (Memory.points.size() < Frame.blockCount) {// ½ºÅÃ¿¡ ³Ö±â
+							if (Memory.points.size() < Frame.blockCount) {// ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½Ö±ï¿½
 								Memory.points.add(new Stones(i, j, color, false));
 								bwMatrix[i][j] = 0;
 							} else {
 								Memory.points.add(new Stones(i, j, color, true));
 							}
 
-							result = winDetection.detectWinner(i, j);// ÆÇÁ¤ÇÏ±â
+							result = winDetection.detectWinner(i, j);// ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 
 							if (Memory.points.size() < Frame.blockCount) {
 								Frame.bwLabel.setText("Setting Blocks");
@@ -157,7 +156,6 @@ public class GamePanel extends JPanel {
 					dialog.setVisible(true);
 					Frame.finish = true;
 				}
-				query.insert(result);
 			}
 
 			@Override
@@ -184,7 +182,7 @@ public class GamePanel extends JPanel {
 
 		int[] index = { 3, 9, 15 };
 		g2 = (Graphics2D) g;
-		for (int i = 0; i < 20; i++) {// °ª ÀÌ´Ï¼£ ¶óÀÌÂ¡ + ¼¼·ÎÁÙ ¼¼ÆÃ
+		for (int i = 0; i < 20; i++) {// ï¿½ï¿½ ï¿½Ì´Ï¼ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ + ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			for (int j = 0; j < 20; j++) {
 				ellipse[i][j] = new Ellipse2D.Double(i * 600 / 18 - 25 / 2 + 10, j * 600 / 18 - 25 / 2 + 10, 25, 25);
 			}
