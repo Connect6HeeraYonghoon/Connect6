@@ -6,18 +6,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
-
+	Calculation calculation = new Calculation();
 
 	WinnerDetection winDetection = new WinnerDetection();
 	Ellipse2D.Double ellipse[][] = new Ellipse2D.Double[20][20];
@@ -135,6 +130,9 @@ public class GamePanel extends JPanel {
 				}
 
 				repaint();
+				
+				calculation.doCalculation();
+				
 				if (result == 1) {
 					System.out.println("Black Win");
 					JLabel text = new JLabel(
