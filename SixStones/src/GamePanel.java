@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
+
+
 	WinnerDetection winDetection = new WinnerDetection();
 	Ellipse2D.Double ellipse[][] = new Ellipse2D.Double[20][20];
 	static int[][] bwMatrix = new int[19][19];
@@ -156,6 +158,7 @@ public class GamePanel extends JPanel {
 					dialog.setVisible(true);
 					Frame.finish = true;
 				}
+
 			}
 
 			@Override
