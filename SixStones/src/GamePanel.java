@@ -133,6 +133,8 @@ public class GamePanel extends JPanel {
 				
 				calculation.doCalculation();
 				
+				
+				
 				if (result == 1) {
 					System.out.println("Black Win");
 					JLabel text = new JLabel(
