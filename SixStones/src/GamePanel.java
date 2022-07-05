@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
-	Queries query = new Queries();
+//	Queries query = new Queries();
 	WinnerDetection winDetection = new WinnerDetection();
 	Ellipse2D.Double ellipse[][] = new Ellipse2D.Double[20][20];
 	static int[][] bwMatrix = new int[19][19];
@@ -157,7 +157,7 @@ public class GamePanel extends JPanel {
 					dialog.setVisible(true);
 					Frame.finish = true;
 				}
-				query.insert(result);
+//				query.insert(result);
 			}
 
 			@Override
