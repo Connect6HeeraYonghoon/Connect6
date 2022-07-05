@@ -21,17 +21,17 @@ public class Queries {
 	public void select() {
 		// TODO Auto-generated method stub
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");// 1. µå¶óÀÌ¹ö ·Îµù
+			Class.forName("com.mysql.cj.jdbc.Driver");// 1. ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Îµï¿½
 
 			System.out.println("hello");
-			String url = "jdbc:mysql://localhost/sixstones";// 2. ¿¬°áÇÏ±â
+			String url = "jdbc:mysql://localhost/sixstones";// 2. ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 
 			conn = DriverManager.getConnection(url, "root", "1234");
 			stmt = conn.createStatement();
-			System.out.println("¿¬°á ¼º°ø");
+			System.out.println("ì—°ê²° ì„±ê³µ");
 			String sql = "select count(*) as total, (select count(*) from winLose where winLose = 1) as win,(select count(*) from winLose where winLose = 2) as lose from winLose; ";
 
-			rs = stmt.executeQuery(sql);// 5. Äõ¸® ¼öÇà
+			rs = stmt.executeQuery(sql);// 5. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 			if (rs.next()) {
 				total = rs.getInt(1);
@@ -39,9 +39,9 @@ public class Queries {
 				lose = rs.getInt(3);
 			}
 		} catch (ClassNotFoundException e) {
-			System.out.println("µå¶óÀÌ¹ö ·Îµù ½ÇÆÐ");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println("¿¡·¯ " + e);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ " + e);
 		} finally {
 			try {
 				if (conn != null && !conn.isClosed()) {
@@ -61,27 +61,27 @@ public class Queries {
 	}
 
 	public void insert(int winLose) {
-		try { // 1. µå¶óÀÌ¹ö ·Îµù
+		try { // 1. ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Îµï¿½
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			String url = "jdbc:mysql://localhost/sixstones";// 2. ¿¬°áÇÏ±â
+			String url = "jdbc:mysql://localhost/sixstones";// 2. ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 			conn = DriverManager.getConnection(url, "root", "1234");
 
-			String sql = "INSERT INTO  winLose(winLose) VALUES (?)";// 3. SQL Äõ¸® ÁØºñ
+			String sql = "INSERT INTO  winLose(winLose) VALUES (?)";// 3. SQL ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, winLose);// 4. µ¥ÀÌÅÍ binding
+			pstmt.setInt(1, winLose);// 4. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ binding
 
-			int count = pstmt.executeUpdate();// 5. Äõ¸® ½ÇÇà ¹× °á°ú Ã³¸®
+			int count = pstmt.executeUpdate();// 5. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 			if (count == 0) {
-				System.out.println("µ¥ÀÌÅÍ ÀÔ·Â ½ÇÆÐ");
+//				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			} else {
-				System.out.println("µ¥ÀÌÅÍ ÀÔ·Â ¼º°ø");
+//				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			}
 		} catch (ClassNotFoundException e) {
-			System.out.println("µå¶óÀÌ¹ö ·Îµù ½ÇÆÐ");
+//			System.out.println("ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
 		} catch (SQLException e) {
-			System.out.println("¿¡·¯ " + e);
+//			System.out.println("ï¿½ï¿½ï¿½ï¿½ " + e);
 		} finally {
 			try {
 				if (conn != null && !conn.isClosed()) {
