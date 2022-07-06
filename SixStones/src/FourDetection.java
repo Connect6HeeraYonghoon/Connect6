@@ -1,19 +1,32 @@
 
 public class FourDetection {
-	//이잰 됄꺼야
 	int[][] endPoint = new int[8][2];
 	public void checkFourDetection(int x, int y) {
+		if (checkHorizontal(x, y) > 4) {
+			Calculation.weight[endPoint[2][0]][endPoint[2][1]] = -50;
+			Calculation.weight[endPoint[6][0]][endPoint[6][1]] = -50;
+			System.out.println("right :" + endPoint[2][0] + " " + endPoint[2][1]);
+			System.out.println("left :" +endPoint[6][0] + " " + endPoint[6][1]);
+			return;
+		}
 		if (checkVertical(x, y) > 4) {
 			Calculation.weight[endPoint[0][0]][endPoint[0][1]] = -50;
 			Calculation.weight[endPoint[4][0]][endPoint[4][1]] = -50;
-			System.out.println("윗값 :" + endPoint[0][0] + " " + endPoint[0][1]);
-			System.out.println("아랫값 :" +endPoint[4][0] + " " + endPoint[4][1]);
-			System.out.println("Hello");
+			System.out.println("up :" + endPoint[0][0] + " " + endPoint[0][1]);
+			System.out.println("down :" +endPoint[4][0] + " " + endPoint[4][1]);
+			return ;
+		}
+		if (checkReverseDiagonal(x, y) > 4) {
+			Calculation.weight[endPoint[5][0]][endPoint[5][1]] = -50;
+			Calculation.weight[endPoint[1][0]][endPoint[1][1]] = -50;
+			System.out.println("LLD :" + endPoint[5][0] + " " + endPoint[5][1]);
+			System.out.println("URU :" +endPoint[1][0] + " " + endPoint[1][1]);
 			return ;
 		}
 	}
 	
-	//세로
+	
+	//vertical check
 	private int checkVertical(int x, int y) {
 		return checkUp(x, y, GamePanel.bwMatrix[x][y]) + checkDown(x, y, GamePanel.bwMatrix[x][y]);
 	}
@@ -39,6 +52,68 @@ public class FourDetection {
 				return 0;
 			}
 			return checkUp(x, y + 1, stoneColor) + 1;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return 0;
+		}
+	}
+	
+	//Horizontal check
+	private int checkHorizontal(int x, int y) {
+		return checkLeft(x, y, GamePanel.bwMatrix[x][y]) + checkRight(x, y, GamePanel.bwMatrix[x][y]);
+	}
+
+	private int checkRight(int x, int y, int stoneColor) {
+		try {
+			if (GamePanel.bwMatrix[x][y] != stoneColor) {
+				endPoint[2][0] = x;
+				endPoint[2][1] = y;
+				return 0;
+			}
+			return checkRight(x + 1, y, stoneColor) + 1;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return 0;
+		}
+	}
+
+	private int checkLeft(int x, int y, int stoneColor) {
+		try {
+			if (GamePanel.bwMatrix[x][y] != stoneColor) {
+				endPoint[6][0] = x;
+				endPoint[6][1] = y;
+				return 0;
+			}
+			return checkLeft(x - 1, y, stoneColor) + 1;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return 0;
+		}
+	}
+	
+	//ReverseDiagonal check
+	private int checkReverseDiagonal(int x, int y) {
+		return checkURU(x, y, GamePanel.bwMatrix[x][y]) + checkLLD(x, y, GamePanel.bwMatrix[x][y]);
+	}
+
+	private int checkLLD(int x, int y, int stoneColor) {
+		try {
+			if (GamePanel.bwMatrix[x][y] != stoneColor) {
+				endPoint[5][0] = x;
+				endPoint[5][1] = y;
+				return 0;
+			}
+			return checkLLD(x - 1, y + 1, stoneColor) + 1;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return 0;
+		}
+	}
+
+	private int checkURU(int x, int y, int stoneColor) {
+		try {
+			if (GamePanel.bwMatrix[x][y] != stoneColor) {
+				endPoint[1][0] = x;
+				endPoint[1][1] = y;
+				return 0;
+			}
+			return checkURU(x + 1, y - 1, stoneColor) + 1;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return 0;
 		}
