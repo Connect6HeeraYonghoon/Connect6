@@ -8,28 +8,24 @@ public class FourDetection {
 			Calculation.weight[endPoint[6][0]][endPoint[6][1]] = -50;
 			System.out.println("right :" + endPoint[2][0] + " " + endPoint[2][1]);
 			System.out.println("left :" + endPoint[6][0] + " " + endPoint[6][1]);
-			return;
 		}
 		if (checkVertical(x, y) > 4) {
 			Calculation.weight[endPoint[0][0]][endPoint[0][1]] = -50;
 			Calculation.weight[endPoint[4][0]][endPoint[4][1]] = -50;
 			System.out.println("up :" + endPoint[0][0] + " " + endPoint[0][1]);
 			System.out.println("down :" + endPoint[4][0] + " " + endPoint[4][1]);
-			return;
 		}
 		if (checkDiagonal(x, y) > 4) {
 			Calculation.weight[endPoint[7][0]][endPoint[7][1]] = -50;
 			Calculation.weight[endPoint[3][0]][endPoint[3][1]] = -50;
 			System.out.println(" UpperLeft :" + endPoint[7][0] + " " + endPoint[7][1]);
 			System.out.println(" LowerRight :" + endPoint[3][0] + " " + endPoint[3][1]);
-			return;
 		}
 		if (checkReverseDiagonal(x, y) > 4) {
 			Calculation.weight[endPoint[5][0]][endPoint[5][1]] = -50;
 			Calculation.weight[endPoint[1][0]][endPoint[1][1]] = -50;
 			System.out.println("LLD :" + endPoint[5][0] + " " + endPoint[5][1]);
 			System.out.println("URU :" + endPoint[1][0] + " " + endPoint[1][1]);
-			return;
 		}
 	}
 
