@@ -185,7 +185,7 @@ public class GamePanel extends JPanel {
 
 		int[] index = { 3, 9, 15 };
 		g2 = (Graphics2D) g;
-		for (int i = 0; i < 20; i++) {// �� �̴ϼ� ����¡ + ������ ����
+		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
 				ellipse[i][j] = new Ellipse2D.Double(i * 600 / 18 - 25 / 2 + 10, j * 600 / 18 - 25 / 2 + 10, 25, 25);
 			}

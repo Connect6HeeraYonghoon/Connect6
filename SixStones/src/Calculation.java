@@ -1,9 +1,9 @@
 import java.awt.Color;
 
 public class Calculation {
-	int[][] weight = new int[19][19];
+	static int[][] weight = new int[19][19];
 	int[][] weightStatus = new int[19][19]; //없으면 0이고,검은색 1, 흰색 2, 착수 3
-	
+	FourDetection fourDetection = new FourDetection();
 	final static int blackStone = 200;
 	final static int whiteStone = 300;
 	final static int blockStone = 400;
@@ -51,6 +51,8 @@ public class Calculation {
 				weight[x][y] = whiteStone;
 			}
 			
+			fourDetection.checkFourDetection(x, y);
+			
 			if(Memory.points.size() > 2) {            
 	            for (int i = 0; i < 19; i++) {
 	               for (int j = 0; j < 19; j++) {
@@ -68,6 +70,7 @@ public class Calculation {
 	               }
 	            }
 	         }
+			
 	         for (int i = 0; i < weight.length; i++) {
 	            for (int j = 0; j < weight.length; j++) {
 	               if(min == weight[i][j]) {
