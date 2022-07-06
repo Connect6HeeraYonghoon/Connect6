@@ -16,6 +16,16 @@ public class FourDetection {
 			System.out.println("down :" +endPoint[4][0] + " " + endPoint[4][1]);
 			return ;
 		}
+		if (checkDiagonal(x, y) > 4) {
+			Calculation.weight[endPoint[7][0]][endPoint[7][1]] = -50;
+			Calculation.weight[endPoint[3][0]][endPoint[3][1]] = -50;
+			System.out.println(" UpperLeft :" + endPoint[7][0] + " " + endPoint[7][1]);
+			System.out.println(" LowerRight :" +endPoint[3][0] + " " + endPoint[3][1]);
+			return;
+		}
+	}
+
+			
 		if (checkReverseDiagonal(x, y) > 4) {
 			Calculation.weight[endPoint[5][0]][endPoint[5][1]] = -50;
 			Calculation.weight[endPoint[1][0]][endPoint[1][1]] = -50;
@@ -30,6 +40,19 @@ public class FourDetection {
 	private int checkVertical(int x, int y) {
 		return checkUp(x, y, GamePanel.bwMatrix[x][y]) + checkDown(x, y, GamePanel.bwMatrix[x][y]);
 	}
+  
+  private int checkUp(int x, int y, int stoneColor) {
+		try {
+			if (GamePanel.bwMatrix[x][y] != stoneColor) {
+				endPoint[4][0] = x;
+				endPoint[4][1] = y;
+				return 0;
+			}
+			return checkUp(x, y + 1, stoneColor) + 1;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return 0;
+		}
+	}
 
 	private int checkDown(int x, int y, int stoneColor) {
 		try {
@@ -43,20 +66,6 @@ public class FourDetection {
 			return 0;
 		}
 	}
-
-	private int checkUp(int x, int y, int stoneColor) {
-		try {
-			if (GamePanel.bwMatrix[x][y] != stoneColor) {
-				endPoint[4][0] = x;
-				endPoint[4][1] = y;
-				return 0;
-			}
-			return checkUp(x, y + 1, stoneColor) + 1;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return 0;
-		}
-	}
-	
 	//Horizontal check
 	private int checkHorizontal(int x, int y) {
 		return checkLeft(x, y, GamePanel.bwMatrix[x][y]) + checkRight(x, y, GamePanel.bwMatrix[x][y]);
@@ -70,11 +79,7 @@ public class FourDetection {
 				return 0;
 			}
 			return checkRight(x + 1, y, stoneColor) + 1;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return 0;
-		}
-	}
-
+	
 	private int checkLeft(int x, int y, int stoneColor) {
 		try {
 			if (GamePanel.bwMatrix[x][y] != stoneColor) {
@@ -88,6 +93,36 @@ public class FourDetection {
 		}
 	}
 	
+  private int checkDiagonal(int x, int y) {
+		return checkULU(x, y, GamePanel.bwMatrix[x][y]) + checkLRD(x, y, GamePanel.bwMatrix[x][y]);
+	}
+
+	private int checkLRD(int x, int y, int stoneColor) {
+		try {
+			if (GamePanel.bwMatrix[x][y] != stoneColor) {
+				endPoint[3][0] = x;
+				endPoint[3][1] = y;	
+				return 0;
+			}
+			return checkLRD(x + 1, y + 1, stoneColor) + 1;
+    } catch (ArrayIndexOutOfBoundsException e) {
+			return 0;
+		}
+	}
+  private int checkULU(int x, int y, int stoneColor) {
+		try {
+			if (GamePanel.bwMatrix[x][y] != stoneColor) {
+						
+				endPoint[7][0] = x;
+				endPoint[7][1] = y;
+				return 0;
+			}
+			return checkULU(x - 1, y - 1, stoneColor) + 1;
+      } catch (ArrayIndexOutOfBoundsException e) {
+			return 0;
+		}
+	}
+  
 	//ReverseDiagonal check
 	private int checkReverseDiagonal(int x, int y) {
 		return checkURU(x, y, GamePanel.bwMatrix[x][y]) + checkLLD(x, y, GamePanel.bwMatrix[x][y]);
@@ -114,8 +149,6 @@ public class FourDetection {
 				return 0;
 			}
 			return checkURU(x + 1, y - 1, stoneColor) + 1;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return 0;
-		}
-	}
+
+		
 }
