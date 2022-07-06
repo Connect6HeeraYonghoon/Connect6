@@ -7,7 +7,8 @@ public class Calculation {
 	final static int blackStone = 200;
 	final static int whiteStone = 300;
 	final static int blockStone = 400;
-	final static int straightStion = -50;
+	final static int blackWeight = - 100;
+	final static int whiteWeight = - 50;
 	
 	public Calculation() {
 		for (int i = 0; i < 19; i++)
@@ -63,8 +64,10 @@ public class Calculation {
 						} else if (weightStatus[i][j] == 3) {
 							weight[i][j] = blockStone;
 						}
-						if (weight[i][j] <=-45 && weight[i][j] >= -55)
-							weight[i][j] = -50;
+						if (weight[i][j] <= blackWeight+5 && weight[i][j] >= blackWeight-5)
+							weight[i][j] = blackWeight;
+						if (weight[i][j] <= whiteWeight+5 && weight[i][j] >= whiteWeight-5)
+							weight[i][j] = whiteWeight;
 						if (min > weight[i][j]) {
 							min = weight[i][j];
 						}

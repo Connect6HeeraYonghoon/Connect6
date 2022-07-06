@@ -125,15 +125,12 @@ public class GamePanel extends JPanel {
 									Frame.bwLabel.setText("WHITE's TURN");
 								}
 							}
+							calculation.doCalculation();
 						}
 					}
 				}
 
 				repaint();
-				
-				calculation.doCalculation();
-				
-				
 				
 				if (result == 1) {
 					System.out.println("Black Win");

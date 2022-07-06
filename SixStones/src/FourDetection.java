@@ -4,26 +4,50 @@ public class FourDetection {
 
 	public void checkFourDetection(int x, int y) {
 		if (checkHorizontal(x, y) > 4) {
-			Calculation.weight[endPoint[2][0]][endPoint[2][1]] = -50;
-			Calculation.weight[endPoint[6][0]][endPoint[6][1]] = -50;
+			if(GamePanel.bwMatrix[x][y] == 1) {
+				Calculation.weight[endPoint[2][0]][endPoint[2][1]] = Calculation.blackWeight;
+				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.blackWeight;				
+			}
+			else if(GamePanel.bwMatrix[x][y] == 2) {
+				Calculation.weight[endPoint[2][0]][endPoint[2][1]] = Calculation.whiteWeight;
+				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.whiteWeight;				
+			}
 			System.out.println("right :" + endPoint[2][0] + " " + endPoint[2][1]);
 			System.out.println("left :" + endPoint[6][0] + " " + endPoint[6][1]);
 		}
 		if (checkVertical(x, y) > 4) {
-			Calculation.weight[endPoint[0][0]][endPoint[0][1]] = -50;
-			Calculation.weight[endPoint[4][0]][endPoint[4][1]] = -50;
+			if(GamePanel.bwMatrix[x][y] == 1) {
+				Calculation.weight[endPoint[0][0]][endPoint[0][1]] = Calculation.blackWeight;
+				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.blackWeight;				
+			}
+			else if(GamePanel.bwMatrix[x][y] == 2) {
+				Calculation.weight[endPoint[0][0]][endPoint[0][1]] = Calculation.whiteWeight;
+				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.whiteWeight;				
+			}
 			System.out.println("up :" + endPoint[0][0] + " " + endPoint[0][1]);
 			System.out.println("down :" + endPoint[4][0] + " " + endPoint[4][1]);
 		}
 		if (checkDiagonal(x, y) > 4) {
-			Calculation.weight[endPoint[7][0]][endPoint[7][1]] = -50;
-			Calculation.weight[endPoint[3][0]][endPoint[3][1]] = -50;
+			if(GamePanel.bwMatrix[x][y] == 1) {                                              
+				Calculation.weight[endPoint[7][0]][endPoint[7][1]] = Calculation.blackWeight;
+				Calculation.weight[endPoint[3][0]][endPoint[3][1]] = Calculation.blackWeight;
+			}                                                                                
+			else if(GamePanel.bwMatrix[x][y] == 2) {                                         
+				Calculation.weight[endPoint[7][0]][endPoint[7][1]] = Calculation.whiteWeight;
+				Calculation.weight[endPoint[3][0]][endPoint[3][1]] = Calculation.whiteWeight;
+			}                                                                                
 			System.out.println(" UpperLeft :" + endPoint[7][0] + " " + endPoint[7][1]);
 			System.out.println(" LowerRight :" + endPoint[3][0] + " " + endPoint[3][1]);
 		}
 		if (checkReverseDiagonal(x, y) > 4) {
-			Calculation.weight[endPoint[5][0]][endPoint[5][1]] = -50;
-			Calculation.weight[endPoint[1][0]][endPoint[1][1]] = -50;
+			if(GamePanel.bwMatrix[x][y] == 1) {                                              
+				Calculation.weight[endPoint[5][0]][endPoint[5][1]] = Calculation.blackWeight;
+				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.blackWeight;
+			}                                                                                
+			else if(GamePanel.bwMatrix[x][y] == 2) {                                         
+				Calculation.weight[endPoint[5][0]][endPoint[5][1]] = Calculation.whiteWeight;
+				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.whiteWeight;
+			}                                                                                
 			System.out.println("LLD :" + endPoint[5][0] + " " + endPoint[5][1]);
 			System.out.println("URU :" + endPoint[1][0] + " " + endPoint[1][1]);
 		}
