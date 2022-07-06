@@ -1,5 +1,6 @@
 
 public class FourDetection {
+	//이잰 됄꺼야
 	int[][] endPoint = new int[8][2];
 	public void checkFourDetection(int x, int y) {
 		if (checkVertical(x, y) > 4) {
