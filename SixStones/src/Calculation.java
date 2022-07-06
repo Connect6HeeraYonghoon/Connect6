@@ -53,24 +53,31 @@ public class Calculation {
 			
 			fourDetection.checkFourDetection(x, y);
 			
-			if(Memory.points.size() > 2) {            
-	            for (int i = 0; i < 19; i++) {
-	               for (int j = 0; j < 19; j++) {
-	                  if(weightStatus[i][j] == 1) {
-	                     weight[i][j] = blackStone;
-	                  }else if(weightStatus[i][j] == 2) {
-	                     weight[i][j] = whiteStone;
-	                  }else if(weightStatus[i][j] == 3) {
-	                     weight[i][j] = blockStone;
-	                  }
-	                  if(min > weight[i][j]) {
-	                     min = weight [i][j];
-	                  }
-	                  
-	               }
-	            }
-	         }
-			
+			if (Memory.points.size() > 2) {
+				for (int i = 0; i < 19; i++) {
+					for (int j = 0; j < 19; j++) {
+						if (weightStatus[i][j] == 1) {
+							weight[i][j] = blackStone;
+						} else if (weightStatus[i][j] == 2) {
+							weight[i][j] = whiteStone;
+						} else if (weightStatus[i][j] == 3) {
+							weight[i][j] = blockStone;
+						}
+						if (weight[i][j] <=-45 && weight[i][j] >= -55)
+							weight[i][j] = -50;
+						if (min > weight[i][j]) {
+							min = weight[i][j];
+						}
+
+					}
+				}
+			}
+//			for (int i = 0; i < weight.length; i++) {
+//	            for (int j = 0; j < weight.length; j++) {
+//	            	if(weight[i][j]<=-45 )
+//	                	  System.out.println("이거다" + i + " " + j);
+//	            }
+//			}
 	         for (int i = 0; i < weight.length; i++) {
 	            for (int j = 0; j < weight.length; j++) {
 	               if(min == weight[i][j]) {
