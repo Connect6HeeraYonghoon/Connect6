@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 
 public class Calculation {
@@ -93,3 +94,4 @@ public class Calculation {
 		}
 	}
 }
+
