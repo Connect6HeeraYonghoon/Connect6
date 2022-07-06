@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
 				bwMatrix[i][j] = -1;
 			}
 		}
-		setBounds(290, 80, 620, 620);
+		setBounds(290, 60, 620, 620);
 		setBackground(new Color(0xFFCC66));
 		setOpaque(true);
 		addMouseListener(new MouseListener() {

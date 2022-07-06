@@ -16,9 +16,14 @@ public class Frame extends JFrame{
 	JFrame fr = new JFrame();
 	JPanel buttonPanel = new JPanel();
 	JPanel blockPanel = new JPanel();
+	JPanel verticalPanel = new JPanel();
+	JPanel horizontalPanel = new JPanel();
 	GamePanel gamePanel = new GamePanel();
 	static JLabel bwLabel = new JLabel();
 	JLabel blockLabel = new JLabel();
+//	JLabel verticalLabel = new JLabel();
+	JLabel[] verticalLabel = new JLabel[19];
+	JLabel[] horizontalLabel = new JLabel[19];
 	static JTextField blockTextField = new JTextField();
 	static JButton blockButton = new JButton("Confirm");
 	JButton resetButton = new JButton("Reset");
@@ -38,8 +43,8 @@ public class Frame extends JFrame{
 		fr.setResizable(false);
 		
 		fr.setLayout(null);
-		buttonPanel.setBounds(100,25,1000,50);
-		buttonPanel.setBackground(Color.RED);
+		buttonPanel.setBounds(100,5,1000,50);
+		buttonPanel.setBackground(new Color(204, 102, 102));
 		buttonPanel.setLayout(null);
 		resetButton.setBounds(5,5,70,40);
 		resetButton.addActionListener(new ActionListener() {
@@ -53,7 +58,7 @@ public class Frame extends JFrame{
 				finish = false;
 				blockCount = 0;
 				blockTextField.setText("");
-				for (int i = 0; i < GamePanel.bwMatrix.length; i++) { // --------> 이거 reset누르면 초기화되는지 확인 필요
+				for (int i = 0; i < GamePanel.bwMatrix.length; i++) { // -------->  隔  reset        珂 화 풔    확    却 
 					for (int j = 0; j < GamePanel.bwMatrix[0].length; j++) {
 						GamePanel.bwMatrix[i][j] = -1;
 					}
@@ -62,14 +67,14 @@ public class Frame extends JFrame{
 		});
 		
 		bwLabel.setBounds(80,5,840,40);
-		bwLabel.setBackground(Color.PINK);
+		bwLabel.setBackground(new Color(204, 153, 153));
 		bwLabel.setOpaque(true);
 		bwLabel.setHorizontalAlignment(JLabel.CENTER);
-		bwLabel.setFont(new Font("Arial", Font.BOLD, 55));
+		bwLabel.setFont(new Font("Arial", Font.BOLD, 45));
 		bwLabel.setText("BLACK's TURN");
 
-		swapButton.setBounds(925,5,70,40); //swap 버튼
-		swapButton.setBackground(Color.BLACK); // 처음에는 흑으로 시작 -> 흑 false
+		swapButton.setBounds(925,5,70,40); //swap   튼
+		swapButton.setBackground(Color.BLACK); // 처                   ->    false
 		swapButton.setForeground(Color.WHITE);
 		swapButton.setEnabled(true);
 		swapButton.addActionListener(new ActionListener() {
@@ -86,16 +91,48 @@ public class Frame extends JFrame{
 				}
 			}
 		});
+		
 
+		
+		
+		verticalPanel.setBounds(260, 60, 30, 620);
+		verticalPanel.setBackground(new Color(204, 153, 000));
+		verticalPanel.setOpaque(true);
+		verticalPanel.setLayout(null);
+		
+		for(int i = 0 ; i<19 ; i++) {
+			verticalLabel[i] = new JLabel();
+			verticalLabel[i].setText(i +"");
+			verticalLabel[i].setHorizontalAlignment(JLabel.CENTER);
+			verticalLabel[i].setBounds(0, i * 590 / 18+ 3, 30, 30);
+			verticalLabel[i].setBackground(Color.RED);
+			verticalPanel.add(verticalLabel[i]);
+		}
+		
+		
+		horizontalPanel.setBounds(290, 680, 620, 30);
+		horizontalPanel.setBackground(new Color(204, 153, 000));
+		horizontalPanel.setOpaque(true);
+		horizontalPanel.setLayout(null);
+		
+		for(int i = 0 ; i<19 ; i++) {
+			horizontalLabel[i] = new JLabel();
+			horizontalLabel[i].setText(i +"");
+			horizontalLabel[i].setHorizontalAlignment(JLabel.CENTER);
+			horizontalLabel[i].setBounds(i * 590 / 18+ 3, 0 , 30, 30);
+			horizontalLabel[i].setBackground(Color.RED);
+			horizontalPanel.add(horizontalLabel[i]);
+		}
+		
 		gamePanel.drawPanel();
 		
-		blockPanel.setBounds(930,80,200,185);
-		blockPanel.setBackground(Color.GREEN);
+		blockPanel.setBounds(930,60,200,185);
+		blockPanel.setBackground(new Color(102, 102, 000));
 		blockPanel.setOpaque(true);
 		blockPanel.setLayout(null);
 		
 		blockLabel.setBounds(5,5,190,40);
-		blockLabel.setBackground(Color.RED);
+		blockLabel.setBackground(new Color(204, 051, 051));
 		blockLabel.setOpaque(true);
 		blockLabel.setText("Block Counts (0~5)");
 		blockLabel.setFont(new Font("Arial", Font.BOLD, 20));
@@ -169,6 +206,8 @@ public class Frame extends JFrame{
 		buttonPanel.add(resetButton);
 		buttonPanel.add(bwLabel);
 		buttonPanel.add(swapButton);
+		fr.add(verticalPanel);
+		fr.add(horizontalPanel);
 		fr.add(blockPanel);
 		fr.add(buttonPanel);
 		fr.add(gamePanel);
