@@ -1,4 +1,4 @@
-//¸ô·ç¶ö¶ó
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public class FourDetection {
 	int[][] endPoint = new int[8][2];
 
@@ -70,7 +70,8 @@ public class FourDetection {
 			return 0;
 		}
 	}
-
+	
+ 
 	private int checkDown(int x, int y, int stoneColor) {
 		try {
 			if (GamePanel.bwMatrix[x][y] != stoneColor) {

@@ -54,7 +54,7 @@ public class Calculation {
 					weightStatus[x][y] = 2;
 					weight[x][y] = whiteStone;
 				}
-
+				
 				fourDetection.checkFourDetection(x, y);
 
 				if (Memory.points.size() > 2) {
@@ -99,5 +99,6 @@ public class Calculation {
 
 			}
 		}
+		
 	}
 }
