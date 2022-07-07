@@ -19,7 +19,7 @@ public class Calculation {
 	}
 
 	public void doCalculation() {
-		int x = Memory.points.get(Memory.points.size() - 1).i;
+		int x = Memory.points.get(Memory.points.size() - 1). i;
 		int y = Memory.points.get(Memory.points.size() - 1).j;
 		int min = 10000000;
 		if (Memory.points.size() <= Frame.blockCount) {
@@ -99,11 +99,13 @@ public class Calculation {
 						}
 					}
 				}
-
-				for (int i = 0; i < weight.length; i++) {
-					for (int j = 0; j < weight.length; j++) {
-						if (min == weight[i][j]) {
-							System.out.println((char) (i + 65) + " " + j);
+				
+				if (Memory.points.size() > Frame.blockCount) {
+					for (int i = 0; i < weight.length; i++) {
+						for (int j = 0; j < weight.length; j++) {
+							if (min == weight[i][j]) {
+								System.out.println((char) (i + 65) + " " + j);
+							}
 						}
 					}
 				}
