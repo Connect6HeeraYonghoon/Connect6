@@ -7,46 +7,46 @@ public class FourDetection {
 
 	public void checkFourDetection(int x, int y) {
 
-		if (checkHorizontal(x, y) > 2) {
-			if(GamePanel.bwMatrix[x][y] == 1) {
-				Calculation.weight[endPoint[2][0]][endPoint[2][1]] = Calculation.black2;
-				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.black2;				
-			}
-			else if(GamePanel.bwMatrix[x][y] == 2) {
-				Calculation.weight[endPoint[2][0]][endPoint[2][1]] = Calculation.white2;
-				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.white2;				
-			}
-		}
-		if (checkVertical(x, y) > 2) {
-			if(GamePanel.bwMatrix[x][y] == 1) {
-				Calculation.weight[endPoint[0][0]][endPoint[0][1]] = Calculation.black2;
-				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.black2;				
-			}
-			else if(GamePanel.bwMatrix[x][y] == 2) {
-				Calculation.weight[endPoint[0][0]][endPoint[0][1]] = Calculation.white2;
-				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.white2;				
-			}
-		}
-		if (checkDiagonal(x, y) > 2) {
-			if(GamePanel.bwMatrix[x][y] == 1) {                                              
-				Calculation.weight[endPoint[7][0]][endPoint[7][1]] = Calculation.black2;
-				Calculation.weight[endPoint[3][0]][endPoint[3][1]] = Calculation.black2;
-			}               
-			else if(GamePanel.bwMatrix[x][y] == 2) {                                         
-				Calculation.weight[endPoint[7][0]][endPoint[7][1]] = Calculation.white2;
-				Calculation.weight[endPoint[3][0]][endPoint[3][1]] = Calculation.white2;
-			}   
-		}
-		if (checkReverseDiagonal(x, y) > 2) {
-			if(GamePanel.bwMatrix[x][y] == 1) {                                              
-				Calculation.weight[endPoint[5][0]][endPoint[5][1]] = Calculation.black2;
-				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.black2;
-			}    
-			else if(GamePanel.bwMatrix[x][y] == 2) {                                         
-				Calculation.weight[endPoint[5][0]][endPoint[5][1]] = Calculation.white2;
-				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.white2;
-			}  
-		}
+//		if (checkHorizontal(x, y) > 2) {
+//			if(GamePanel.bwMatrix[x][y] == 1) {
+//				Calculation.weight[endPoint[2][0]][endPoint[2][1]] = Calculation.black2;
+//				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.black2;				
+//			}
+//			else if(GamePanel.bwMatrix[x][y] == 2) {
+//				Calculation.weight[endPoint[2][0]][endPoint[2][1]] = Calculation.white2;
+//				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.white2;				
+//			}
+//		}
+//		if (checkVertical(x, y) > 2) {
+//			if(GamePanel.bwMatrix[x][y] == 1) {
+//				Calculation.weight[endPoint[0][0]][endPoint[0][1]] = Calculation.black2;
+//				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.black2;				
+//			}
+//			else if(GamePanel.bwMatrix[x][y] == 2) {
+//				Calculation.weight[endPoint[0][0]][endPoint[0][1]] = Calculation.white2;
+//				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.white2;				
+//			}
+//		}
+//		if (checkDiagonal(x, y) > 2) {
+//			if(GamePanel.bwMatrix[x][y] == 1) {                                              
+//				Calculation.weight[endPoint[7][0]][endPoint[7][1]] = Calculation.black2;
+//				Calculation.weight[endPoint[3][0]][endPoint[3][1]] = Calculation.black2;
+//			}               
+//			else if(GamePanel.bwMatrix[x][y] == 2) {                                         
+//				Calculation.weight[endPoint[7][0]][endPoint[7][1]] = Calculation.white2;
+//				Calculation.weight[endPoint[3][0]][endPoint[3][1]] = Calculation.white2;
+//			}   
+//		}
+//		if (checkReverseDiagonal(x, y) > 2) {
+//			if(GamePanel.bwMatrix[x][y] == 1) {                                              
+//				Calculation.weight[endPoint[5][0]][endPoint[5][1]] = Calculation.black2;
+//				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.black2;
+//			}    
+//			else if(GamePanel.bwMatrix[x][y] == 2) {                                         
+//				Calculation.weight[endPoint[5][0]][endPoint[5][1]] = Calculation.white2;
+//				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.white2;
+//			}  
+//		}
 		
 		
 		if (checkHorizontal(x, y) > 3) {
@@ -284,6 +284,7 @@ public class FourDetection {
 		}
 		return checkSixRight(x+1, y, stoneColor, count+1);
 	}
+	
 	private int checkSixLeft(int x, int y, int stoneColor, int count) {
 		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
 //			return 0;
