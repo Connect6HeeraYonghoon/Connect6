@@ -1,11 +1,10 @@
 import java.awt.Color;
-import java.util.ArrayList;
 
 public class Calculation {
 	Memory decisionPoints = new Memory();
 	Stones stone;
 	static int[][] weight = new int[19][19];
-	int[][] weightStatus = new int[19][19]; // 없으면 0이고,검은색 1, 흰색 2, 착수 3
+	static int[][] weightStatus = new int[19][19]; // 없으면 0이고,검은색 1, 흰색 2, 착수 3
 	FourDetection fourDetection = new FourDetection();
 	final static int blackStone = 200;
 	final static int whiteStone = 300;
