@@ -9,6 +9,7 @@ public class Calculation {
 	final static int blockStone = 400;
 	final static int blackWeight = -100;
 	final static int whiteWeight = -50;
+	static int min;
 
 	public Calculation() {
 		for (int i = 0; i < 19; i++)
@@ -21,15 +22,13 @@ public class Calculation {
 	public void doCalculation() {
 		int x = Memory.points.get(Memory.points.size() - 1).i;
 		int y = Memory.points.get(Memory.points.size() - 1).j;
-		int min = 10000000;
+		min = 10000000;
 		if (Memory.points.size() <= Frame.blockCount) {
 			weightStatus[x][y] = 3;
 			weight[x][y] = blockStone;
 		} else {
 			try {
 				if (Memory.points.get(Memory.points.size() - 1).color == Color.BLACK) { // 검은색
-//				if(weightStatus[x][y] == 0)
-//					if()
 					for (int i = 1; i < 6; i++) {
 						if (y - i >= 0)
 							weight[x][y - i] += -1;
@@ -76,8 +75,6 @@ public class Calculation {
 					weight[x][y] = whiteStone;
 				}
 
-				fourDetection.checkFourDetection(x, y);
-
 				if (Memory.points.size() > 2) {
 					for (int i = 0; i < 19; i++) {
 						for (int j = 0; j < 19; j++) {
@@ -99,6 +96,8 @@ public class Calculation {
 						}
 					}
 				}
+				
+				fourDetection.checkFourDetection(x, y);
 
 				for (int i = 0; i < weight.length; i++) {
 					for (int j = 0; j < weight.length; j++) {
@@ -119,5 +118,6 @@ public class Calculation {
 			} catch (IndexOutOfBoundsException e) {
 			}
 		}
+		
 	}
 }
