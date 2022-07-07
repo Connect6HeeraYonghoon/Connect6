@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class Calculation {
 	Memory decisionPoints = new Memory();
@@ -123,8 +124,9 @@ public class Calculation {
 					if (((Memory.points.size() + 1) / 2) % 2 == 0) {
 						while (!Memory.decisionPoints.isEmpty()) {
 //							if(Memory.points.peek().color == Color.BLACK) {
-								x = Memory.points.peek().i+1;
-								y = Memory.points.peek().j+1;
+								System.out.println("메모리에 들어있는 값 : " + Memory.points.peek().i + " " + Memory.points.peek().j);
+								x = Memory.decisionPoints.peek().i;
+								y = Memory.decisionPoints.peek().j;
 								weight[x][y] = blackStone;
 								
 								for (int i = 1; i < 6; i++) {
