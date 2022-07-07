@@ -29,27 +29,48 @@ public class Calculation {
 			try {
 				if (Memory.points.get(Memory.points.size() - 1).color == Color.BLACK) { // 검은색
 //				if(weightStatus[x][y] == 0)
-					weight[x][y - 1] += -1;
-					weight[x + 1][y - 1] += -1;
-					weight[x + 1][y] += -1;
-					weight[x + 1][y + 1] += -1;
-					weight[x][y + 1] += -1;
-					weight[x - 1][y + 1] += -1;
-					weight[x - 1][y] += -1;
-					weight[x - 1][y - 1] += -1;
+//					if()
+					for (int i = 1; i < 6; i++) {
+						if (y - i >= 0)
+							weight[x][y - i] += -1;
+						if (x + i <= 18 && y - i >= 0)
+							weight[x + i][y - i] += -1;
+						if (x + i <= 18)
+							weight[x + i][y] += -1;
+						if (x + i <= 18 && y + i <= 18)
+							weight[x + i][y + i] += -1;
+						if (y + i <= 18)
+							weight[x][y + i] += -1;
+						if (x - i >= 0 && y + i <= 18)
+							weight[x - i][y + i] += -1;
+						if (x - i >= 0)
+							weight[x - i][y] += -1;
+						if (x - i >= 0 && y - i >= 0)
+							weight[x - i][y - i] += -1;
+					}
 
 					weightStatus[x][y] = 1;
 					weight[x][y] = blackStone;
 
 				} else if (Memory.points.get(Memory.points.size() - 1).color == Color.WHITE) {// 흰색
-					weight[x][y - 1] += 1;
-					weight[x + 1][y - 1] += 1;
-					weight[x + 1][y] += 1;
-					weight[x + 1][y + 1] += 1;
-					weight[x][y + 1] += 1;
-					weight[x - 1][y + 1] += 1;
-					weight[x - 1][y] += 1;
-					weight[x - 1][y - 1] += 1;
+					for (int i = 1; i < 6; i++) {
+						if (y - i >= 0)
+							weight[x][y - i] += 1;
+						if (x + i <= 18 && y - i >= 0)
+							weight[x + i][y - i] += 1;
+						if (x + i <= 18)
+							weight[x + i][y] += 1;
+						if (x + i <= 18 && y + i <= 18)
+							weight[x + i][y + i] += 1;
+						if (y + i <= 18)
+							weight[x][y + i] += 1;
+						if (x - i >= 0 && y + i <= 18)
+							weight[x - i][y + i] += 1;
+						if (x - i >= 0)
+							weight[x - i][y] += 1;
+						if (x - i >= 0 && y - i >= 0)
+							weight[x - i][y - i] += 1;
+					}
 
 					weightStatus[x][y] = 2;
 					weight[x][y] = whiteStone;
@@ -82,7 +103,7 @@ public class Calculation {
 				for (int i = 0; i < weight.length; i++) {
 					for (int j = 0; j < weight.length; j++) {
 						if (min == weight[i][j]) {
-							System.out.println(i + " " + j);
+							System.out.println((char) (i + 65) + " " + j);
 						}
 					}
 				}
@@ -96,7 +117,6 @@ public class Calculation {
 				System.out.println("---------------------------------------------------");
 
 			} catch (IndexOutOfBoundsException e) {
-
 			}
 		}
 		
