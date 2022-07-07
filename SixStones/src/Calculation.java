@@ -201,8 +201,11 @@ public class Calculation {
 						}
 					}
 				}
+				
+				weightSelect(min);
 
 				decisionCount = 0;
+				
 				for (int i = 0; i < weight.length; i++) {
 					for (int j = 0; j < weight.length; j++) {
 						if (min == weight[i][j]) {
@@ -211,9 +214,11 @@ public class Calculation {
 
 //							System.out.println(decisionCount + " 가능한 곳 " + (char) (i + 65) + " " + j);
 //							System.out.println((char) (i + 65) + " " + j);
+							System.out.println(i + " " + j);
 						}
 					}
 				}
+				
 				if (decisionCount < 3) {
 					if (((Memory.points.size() + 1- Frame.blockCount) / 2) % 2 == 0) {
 						while (!Memory.decisionPoints.isEmpty()) {
@@ -249,9 +254,12 @@ public class Calculation {
 				}
 
 				Memory.decisionPoints.clear();
+
 //				for (int i = 0; i < Memory.points.size(); i++) {
 //					System.out.println(i+1+" "+(char) (65 + Memory.points.get(i).i) + " " + Memory.points.get(i).j);
-//				}
+//				}			
+//				int n = (int)Math.random()*(1) + (-5);
+
 				
 				
 				for (int i = 0; i < 19; i++) {
@@ -260,11 +268,57 @@ public class Calculation {
 					}
 					System.out.println("|");
 				}
+
 				System.out.println("---------------------------------------------------");
 
 			} catch (IndexOutOfBoundsException e) {
 			}
 		}
 
+	}
+	
+	public void weightSelect(int min) {
+		int x = Memory.points.get(Memory.points.size() - 1).i;
+		int y = Memory.points.get(Memory.points.size() - 1).j;
+		
+		
+		if (((Memory.points.size() + 1) / 2) % 2 == 0) {
+			for (int i = 1; i < 6; i++) {
+				if (weight[x][y - i] == min) {
+					weight[x][y - i] = min - 10;
+					return;
+				}
+				if (weight[x + i][y - i] == min) {
+					weight[x + i][y - i] = min - 10;
+					return;
+				}
+				if (weight[x + i][y] == min) {
+					weight[x + i][y] = min - 10;
+					return ;
+				}
+				if (weight[x + i][y + i] == min) {
+					weight[x + i][y + i] = min - 10;
+					return ;
+				}
+				if (weight[x][y + i] == min) {
+					weight[x][y + i] = min -10;
+					return;
+				}
+				if (weight[x - i][y + i] == min) {
+					weight[x - i][y + i] = min - 10;
+					return ;
+				}
+				if (weight[x - i][y] == min) {
+					weight[x - i][y] = min - 10;
+					return ;
+				}
+				if (weight[x - i][y - i] == min ) {
+					weight[x - i][y - i] = min - 10;
+					return ;
+				}
+			}
+		}
+		
+		return;
 	}
 }
