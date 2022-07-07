@@ -131,6 +131,7 @@ public class GamePanel extends JPanel {
 					}
 				}
 				System.out.println("µ¹ °¹¼ö : " + Memory.points.size());
+				System.out.println("---------------------------------------------------");
 				repaint();
 				
 				if (result == 1) {
