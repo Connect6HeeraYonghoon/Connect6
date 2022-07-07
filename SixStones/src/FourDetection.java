@@ -1,11 +1,12 @@
 //gggggss
 public class FourDetection {
 	int[][] endPoint = new int[8][2];
-	boolean[][] otherColor = new boolean [8][6]; 
+	boolean[][] otherColor; 
 	int count[] = new int[8];
 	int count2 = 0;
 
 	public void checkFourDetection(int x, int y) {
+		otherColor = new boolean [8][6];
 
 //		if (checkHorizontal(x, y) > 2) {
 //			if(GamePanel.bwMatrix[x][y] == 1) {
@@ -131,29 +132,32 @@ public class FourDetection {
 				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.whiteWeight;
 			}                                                                                
 		}
-		checkSixRight(x, y, GamePanel.bwMatrix[x][y], count[2]);
-		checkSixLeft(x, y, GamePanel.bwMatrix[x][y], count[6]);
-		checkSixUp(x, y, GamePanel.bwMatrix[x][y], count[0]);
-		checkSixDown(x, y, GamePanel.bwMatrix[x][y], count[4]);
-		checkSixLRD(x, y, GamePanel.bwMatrix[x][y], count[3]);
-		checkSixULU(x, y, GamePanel.bwMatrix[x][y], count[7]);
-		checkSixURU(x, y, GamePanel.bwMatrix[x][y], count[1]);
-		checkSixLLD(x, y, GamePanel.bwMatrix[x][y], count[5]);
 		
-		
-		for (int i = 0; i < otherColor.length; i++) {
-			for (int j = 0; j < otherColor[0].length; j++) {
-				System.out.print(otherColor[j][i]+"\t");
-			}
-			System.out.println();
+		if(((Memory.points.size() + 1) / 2) % 2 == 0) {
+			checkSixRight(x, y, GamePanel.bwMatrix[x][y], count[2]);
+			checkSixLeft(x, y, GamePanel.bwMatrix[x][y], count[6]);
+			checkSixUp(x, y, GamePanel.bwMatrix[x][y], count[0]);
+			checkSixDown(x, y, GamePanel.bwMatrix[x][y], count[4]);
+			checkSixLRD(x, y, GamePanel.bwMatrix[x][y], count[3]);
+			checkSixULU(x, y, GamePanel.bwMatrix[x][y], count[7]);
+			checkSixURU(x, y, GamePanel.bwMatrix[x][y], count[1]);
+			checkSixLLD(x, y, GamePanel.bwMatrix[x][y], count[5]);
 		}
-		System.out.println("___________________________________");
+		
+		
+		
+//		for (int i = 0; i < otherColor.length; i++) {
+//			System.out.print(i + "방향 :" );
+//			for (int j = 0; j < otherColor[0].length; j++) {
+//				System.out.print(otherColor[i][j]+"\t");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println("___________________________________");
 //		checkSixLeft(x, y, GamePanel.bwMatrix[x][y], count[6]);
 		
 		
 	}
-
-
 
 	// vertical check
 	private int checkVertical(int x, int y) {		
