@@ -322,7 +322,7 @@ public class Calculation {
 					return min-10;
 				}
 			}
-			
+
 		}
 		
 		return min;
