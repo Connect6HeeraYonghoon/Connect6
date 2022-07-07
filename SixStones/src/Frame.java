@@ -117,7 +117,7 @@ public class Frame extends JFrame{
 		
 		for(int i = 0 ; i<19 ; i++) {
 			horizontalLabel[i] = new JLabel();
-			horizontalLabel[i].setText(i +"");
+			horizontalLabel[i].setText((char)(i+65)+"");
 			horizontalLabel[i].setHorizontalAlignment(JLabel.CENTER);
 			horizontalLabel[i].setBounds(i * 590 / 18+ 3, 0 , 30, 30);
 			horizontalLabel[i].setBackground(Color.RED);
