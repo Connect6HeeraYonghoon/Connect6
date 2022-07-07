@@ -1,6 +1,8 @@
 import java.awt.Color;
 
 public class Calculation {
+	Memory decisionPoints = new Memory();
+	Stones stone;
 	static int[][] weight = new int[19][19];
 	int[][] weightStatus = new int[19][19]; // 없으면 0이고,검은색 1, 흰색 2, 착수 3
 	FourDetection fourDetection = new FourDetection();
@@ -13,6 +15,7 @@ public class Calculation {
 	final static int black3 = -30;
 	final static int white2 = -15;
 	final static int white3 = -25;
+	int decisionCount;
 
 	public Calculation() {
 		for (int i = 0; i < 19; i++)
@@ -82,8 +85,6 @@ public class Calculation {
 				}
 				
 				fourDetection.checkFourDetection(x, y);
-
-				fourDetection.checkFourDetection(x, y);
 				
 				if (Memory.points.size() > 2) {
 					for (int i = 0; i < 19; i++) {
@@ -107,22 +108,39 @@ public class Calculation {
 					}
 				}
 				
-
+				decisionCount = 0;
 				for (int i = 0; i < weight.length; i++) {
 					for (int j = 0; j < weight.length; j++) {
 						if (min == weight[i][j]) {
-							System.out.println((char) (i + 65) + " " + j);
+							decisionCount++;
+//							System.out.println("데이터 넣기");
+							Memory.decisionPoints.add(new Stones(i, j, Color.BLACK, false));
+							System.out.println(decisionCount + " 가능한 곳 " + (char) (i + 65) + " " + j);
+//							System.out.println(i + " " + j);
 						}
 					}
 				}
-
-				for (int i = 0; i < 19; i++) {
-					for (int j = 0; j < 19; j++) {
-						System.out.print("|" + weight[j][i] + "\t");
-					}
-					System.out.println("|");
+				if(((Memory.points.size() + 1) / 2) % 2 == 0) {
+					while(!Memory.decisionPoints.isEmpty()) {
+						Memory.points.add(Memory.decisionPoints.pop());
+					}					
 				}
-				System.out.println("---------------------------------------------------");
+				System.out.println("POP이후 : "+ Memory.decisionPoints.size() );
+				for (int i = 0; i < Memory.decisionPoints.size(); i++) {
+					System.out.println(Memory.decisionPoints.get(i).i + " " + Memory.decisionPoints.get(i).j );
+				}
+				
+				Memory.decisionPoints.clear();
+				for (int i = 0; i < Memory.points.size(); i++) {
+					System.out.println((char) (65+Memory.points.get(i).i) + " " + Memory.points.get(i).j );
+				}
+//				for (int i = 0; i < 19; i++) {
+//					for (int j = 0; j < 19; j++) {
+//						System.out.print("|" + weight[j][i] + "\t");
+//					}
+//					System.out.println("|");
+//				}
+//				System.out.println("---------------------------------------------------");
 
 			} catch (IndexOutOfBoundsException e) {
 			}

@@ -20,6 +20,7 @@ public class GamePanel extends JPanel {
 	Stones stone;
 	static int result = 0;
 
+
 	Graphics2D g2;
 
 	public void drawPanel() {
@@ -129,7 +130,7 @@ public class GamePanel extends JPanel {
 						}
 					}
 				}
-
+				System.out.println("µ¹ °¹¼ö : " + Memory.points.size());
 				repaint();
 				
 				if (result == 1) {
