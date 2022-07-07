@@ -79,7 +79,6 @@ public class Calculation {
 						if (x - i >= 0 && y - i >= 0)
 							weight[x - i][y - i] += 1;
 					}
-
 					weightStatus[x][y] = 2;
 					weight[x][y] = whiteStone;
 				}
@@ -115,7 +114,7 @@ public class Calculation {
 							decisionCount++;
 //							System.out.println("데이터 넣기");
 							Memory.decisionPoints.add(new Stones(i, j, Color.BLACK, false));
-							System.out.println(decisionCount + " 가능한 곳 " + (char) (i + 65) + " " + j);
+//							System.out.println(decisionCount + " 가능한 곳 " + (char) (i + 65) + " " + j);
 //							System.out.println(i + " " + j);
 						}
 					}
@@ -124,7 +123,7 @@ public class Calculation {
 					if (((Memory.points.size() + 1) / 2) % 2 == 0) {
 						while (!Memory.decisionPoints.isEmpty()) {
 //							if(Memory.points.peek().color == Color.BLACK) {
-								System.out.println("메모리에 들어있는 값 : " + Memory.points.peek().i + " " + Memory.points.peek().j);
+//								System.out.println("메모리에 들어있는 값 : " + Memory.points.peek().i + " " + Memory.points.peek().j);
 								x = Memory.decisionPoints.peek().i;
 								y = Memory.decisionPoints.peek().j;
 								weight[x][y] = blackStone;
@@ -155,16 +154,16 @@ public class Calculation {
 				}
 
 				Memory.decisionPoints.clear();
-				for (int i = 0; i < Memory.points.size(); i++) {
-					System.out.println(i+1+" "+(char) (65 + Memory.points.get(i).i) + " " + Memory.points.get(i).j);
-				}
-				for (int i = 0; i < 19; i++) {
-					for (int j = 0; j < 19; j++) {
-						System.out.print("|" + weight[j][i] + "\t");
-					}
-					System.out.println("|");
-				}
-				System.out.println("---------------------------------------------------");
+//				for (int i = 0; i < Memory.points.size(); i++) {
+//					System.out.println(i+1+" "+(char) (65 + Memory.points.get(i).i) + " " + Memory.points.get(i).j);
+//				}
+//				for (int i = 0; i < 19; i++) {
+//					for (int j = 0; j < 19; j++) {
+//						System.out.print("|" + weight[j][i] + "\t");
+//					}
+//					System.out.println("|");
+//				}
+//				System.out.println("---------------------------------------------------");
 
 			} catch (IndexOutOfBoundsException e) {
 			}

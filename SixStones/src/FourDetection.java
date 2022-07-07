@@ -132,13 +132,18 @@ public class FourDetection {
 			}                                                                                
 		}
 		checkSixRight(x, y, GamePanel.bwMatrix[x][y], count[2]);
-//		for (int i = 0; i < otherColor.length; i++) {
-//			for (int j = 0; j < otherColor[0].length; j++) {
-//				System.out.print(otherColor[i][j]+"\t");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println("___________________________________");
+		checkSixLeft(x, y, GamePanel.bwMatrix[x][y], count[6]);
+		checkSixUp(x, y, GamePanel.bwMatrix[x][y], count[0]);
+		checkSixDown(x, y, GamePanel.bwMatrix[x][y], count[4]);
+		checkSixLRD(x, y, GamePanel.bwMatrix[x][y], count[3]);
+		
+		for (int i = 0; i < otherColor.length; i++) {
+			for (int j = 0; j < otherColor[0].length; j++) {
+				System.out.print(otherColor[j][i]+"\t");
+			}
+			System.out.println();
+		}
+		System.out.println("___________________________________");
 //		checkSixLeft(x, y, GamePanel.bwMatrix[x][y], count[6]);
 		
 		
@@ -272,6 +277,8 @@ public class FourDetection {
 		}
 	}
 	
+	/////////////////////////////////////////////////////////////////////
+	
 	private int checkSixRight(int x, int y, int stoneColor, int count) {
 		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
 			System.out.println("확인 : " + x + " " + y);
@@ -287,11 +294,75 @@ public class FourDetection {
 	
 	private int checkSixLeft(int x, int y, int stoneColor, int count) {
 		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			otherColor[6][count] = true;
 //			return 0;
 		}
 		if(count > 4) {
 			return 0;
 		}
-		return checkSixRight(x-1, y, stoneColor, count+1);
+		return checkSixLeft(x-1, y, stoneColor, count+1);
+	}
+	
+	private int checkSixUp(int x, int y, int stoneColor, int count) {
+		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			otherColor[0][count] = true;
+//			return 0;
+		}
+		if(count > 4) {
+			return 0;
+		}
+		return checkSixUp(x, y-1, stoneColor, count+1);
+	}
+	
+	private int checkSixDown(int x, int y, int stoneColor, int count) {
+		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			otherColor[4][count] = true;
+//			return 0;
+		}
+		if(count > 4) {
+			return 0;
+		}
+		return checkSixDown(x, y+1, stoneColor, count+1);
+	}
+	
+	private int checkSixLRD(int x, int y, int stoneColor, int count) {
+		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			otherColor[3][count] = true;
+//			return 0;
+		}
+		if(count > 4) {
+			return 0;
+		}
+		return checkSixLRD(x+1, y+1, stoneColor, count+1);
+	}
+	private int checkSixULU(int x, int y, int stoneColor, int count) {
+		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			otherColor[7][count] = true;
+//			return 0;
+		}
+		if(count > 4) {
+			return 0;
+		}
+		return checkSixULU(x-1, y-1, stoneColor, count+1);
+	}
+	private int checkSixURU(int x, int y, int stoneColor, int count) {
+		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			otherColor[1][count] = true;
+//			return 0;
+		}
+		if(count > 4) {
+			return 0;
+		}
+		return checkSixURU(x+1, y-1, stoneColor, count+1);
+	}
+	private int checkSixLLD(int x, int y, int stoneColor, int count) {
+		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			otherColor[5][count] = true;
+//			return 0;
+		}
+		if(count > 4) {
+			return 0;
+		}
+		return checkSixLLD(x-1, y+1, stoneColor, count+1);
 	}
 }
