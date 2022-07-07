@@ -1,7 +1,13 @@
 import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Calculation {
 	Memory decisionPoints = new Memory();
+	WinnerDetection winDetection = new WinnerDetection();
 	Stones stone;
 	static int[][] weight = new int[19][19];
 	static int[][] weightStatus = new int[19][19]; // 없으면 0이고,검은색 1, 흰색 2, 착수 3
@@ -30,61 +36,151 @@ public class Calculation {
 		int min = 100000000;
 		int x = Memory.points.get(Memory.points.size() - 1).i;
 		int y = Memory.points.get(Memory.points.size() - 1).j;
+		boolean[] check = new boolean[8];
 
 		if (Memory.points.size() <= Frame.blockCount) {
 			weightStatus[x][y] = 3;
 			weight[x][y] = blockStone;
 		} else {
 			try {
+				fourDetection.checkFourDetection(x, y);
 				if (Memory.points.get(Memory.points.size() - 1).color == Color.BLACK) { // 검은색
+					
+					System.out.println("------------------");
 					for (int i = 1; i < 6; i++) {
-						if (y - i >= 0)
-							weight[x][y - i] += -1;
-						if (x + i <= 18 && y - i >= 0)
-							weight[x + i][y - i] += -1;
-						if (x + i <= 18)
-							weight[x + i][y] += -1;
-						if (x + i <= 18 && y + i <= 18)
-							weight[x + i][y + i] += -1;
-						if (y + i <= 18)
-							weight[x][y + i] += -1;
-						if (x - i >= 0 && y + i <= 18)
-							weight[x - i][y + i] += -1;
-						if (x - i >= 0)
-							weight[x - i][y] += -1;
-						if (x - i >= 0 && y - i >= 0)
-							weight[x - i][y - i] += -1;
-					}
+						if (y - i >= 0) {
+							if (FourDetection.diffColor[0]) {
+								weight[x][y - i] = 0;
+							} else {
+								weight[x][y - i] += -1;
+							}
+						}
+						if (x + i <= 18 && y - i >= 0) {
+							if (FourDetection.diffColor[1]) {
+								weight[x + i][y - i] = 0;
+							} else {
+								weight[x + i][y - i] += -1;
+							}
+						}
+						if (x + i <= 18) {
+							if (FourDetection.diffColor[2]) {
+								weight[x + i][y] = 0;
+							} else {
+								weight[x + i][y] += -1;
+							}
+						}
+						if (x + i <= 18 && y + i <= 18) {
+							if (FourDetection.diffColor[3]) {
+								weight[x + i][y + i] = 0;
+							} else {
+								weight[x + i][y + i] += -1;
+							}
+						}
+						if (y + i <= 18) {
+							if (FourDetection.diffColor[4]) {
+								weight[x][y + i] = 0;
+							} else {
+								weight[x][y + i] += -1;
+							}
+						}
 
+						if (x - i >= 0 && y + i <= 18) {
+							if (FourDetection.diffColor[5]) {
+								weight[x - i][y + i] = 0;
+							} else {
+								weight[x - i][y + i] += -1;
+							}
+						}
+
+						if (x - i >= 0) {
+							if (FourDetection.diffColor[6]) {
+								weight[x - i][y] = 0;
+							} else {
+								weight[x - i][y] += -1;
+							}
+						}
+
+						if (x - i >= 0 && y - i >= 0) {
+							if (FourDetection.diffColor[7]) {
+								weight[x - i][y - i] = 0;
+							} else {
+								weight[x - i][y - i] += -1;
+							}
+						}
+
+					}
 					weightStatus[x][y] = 1;
 					weight[x][y] = blackStone;
 
 				} else if (Memory.points.get(Memory.points.size() - 1).color == Color.WHITE) {// 흰색
 					for (int i = 1; i < 6; i++) {
-						if (y - i >= 0)
-							weight[x][y - i] += 1;
-						if (x + i <= 18 && y - i >= 0)
-							weight[x + i][y - i] += 1;
-						if (x + i <= 18)
-							weight[x + i][y] += 1;
-						if (x + i <= 18 && y + i <= 18)
-							weight[x + i][y + i] += 1;
-						if (y + i <= 18)
-							weight[x][y + i] += 1;
-						if (x - i >= 0 && y + i <= 18)
-							weight[x - i][y + i] += 1;
-						if (x - i >= 0)
-							weight[x - i][y] += 1;
-						if (x - i >= 0 && y - i >= 0)
-							weight[x - i][y - i] += 1;
+						if (y - i >= 0) {
+							if (FourDetection.diffColor[0]) {
+								weight[x][y - i] = 0;
+							} else {
+								weight[x][y - i] += 1;
+							}
+						}
+						if (x + i <= 18 && y - i >= 0) {
+							if (FourDetection.diffColor[1]) {
+								weight[x + i][y - i] = 0;
+							} else {
+								weight[x + i][y - i] += 1;
+							}
+						}
+						if (x + i <= 18) {
+							if (FourDetection.diffColor[2]) {
+								weight[x + i][y] = 0;
+							} else {
+								weight[x + i][y] += 1;
+							}
+						}
+						if (x + i <= 18 && y + i <= 18) {
+							if (FourDetection.diffColor[3]) {
+								weight[x + i][y + i] = 0;
+							} else {
+								weight[x + i][y + i] += 1;
+							}
+						}
+						if (y + i <= 18) {
+							if (FourDetection.diffColor[4]) {
+								weight[x][y + i] = 0;
+							} else {
+								weight[x][y + i] += 1;
+							}
+						}
+
+						if (x - i >= 0 && y + i <= 18) {
+							if (FourDetection.diffColor[5]) {
+								weight[x - i][y + i] = 0;
+							} else {
+								weight[x - i][y + i] += 1;
+							}
+						}
+
+						if (x - i >= 0) {
+							if (FourDetection.diffColor[6]) {
+								weight[x - i][y] = 0;
+							} else {
+								weight[x - i][y] += 1;
+							}
+						}
+
+						if (x - i >= 0 && y - i >= 0) {
+							if (FourDetection.diffColor[7]) {
+								weight[x - i][y - i] = 0;
+							} else {
+								weight[x - i][y - i] += 1;
+							}
+						}
 					}
 					weightStatus[x][y] = 2;
 					weight[x][y] = whiteStone;
 				}
 
-				fourDetection.checkFourDetection(x, y);
+//				fourDetection.checkFourDetection(x, y);
 
-				if (Memory.points.size() > 2) {
+				if (Memory.points.size()- Frame.blockCount > 2) {
 					for (int i = 0; i < 19; i++) {
 						for (int j = 0; j < 19; j++) {
 							if (weightStatus[i][j] == 1) {
@@ -114,37 +210,37 @@ public class Calculation {
 							Memory.decisionPoints.add(new Stones(i, j, Color.BLACK, false));
 
 //							System.out.println(decisionCount + " 가능한 곳 " + (char) (i + 65) + " " + j);
-//							System.out.println(i + " " + j);
+//							System.out.println((char) (i + 65) + " " + j);
 						}
 					}
 				}
 				if (decisionCount < 3) {
-					if (((Memory.points.size() + 1) / 2) % 2 == 0) {
+					if (((Memory.points.size() + 1- Frame.blockCount) / 2) % 2 == 0) {
 						while (!Memory.decisionPoints.isEmpty()) {
 //							if(Memory.points.peek().color == Color.BLACK) {
 //								System.out.println("메모리에 들어있는 값 : " + Memory.points.peek().i + " " + Memory.points.peek().j);
-								x = Memory.decisionPoints.peek().i;
-								y = Memory.decisionPoints.peek().j;
-								weight[x][y] = blackStone;
+							x = Memory.decisionPoints.peek().i;
+							y = Memory.decisionPoints.peek().j;
+							weight[x][y] = blackStone;
 //								
-								for (int i = 1; i < 6; i++) {
-									if (y - i >= 0)
-										weight[x][y - i] += -1;
-									if (x + i <= 18 && y - i >= 0)
-										weight[x + i][y - i] += -1;
-									if (x + i <= 18)
-										weight[x + i][y] += -1;
-									if (x + i <= 18 && y + i <= 18)
-										weight[x + i][y + i] += -1;
-									if (y + i <= 18)
-										weight[x][y + i] += -1;
-									if (x - i >= 0 && y + i <= 18)
-										weight[x - i][y + i] += -1;
-									if (x - i >= 0)
-										weight[x - i][y] += -1;
-									if (x - i >= 0 && y - i >= 0)
-										weight[x - i][y - i] += -1;
-								}
+							for (int i = 1; i < 6; i++) {
+								if (y - i >= 0)
+									weight[x][y - i] += -1;
+								if (x + i <= 18 && y - i >= 0)
+									weight[x + i][y - i] += -1;
+								if (x + i <= 18)
+									weight[x + i][y] += -1;
+								if (x + i <= 18 && y + i <= 18)
+									weight[x + i][y + i] += -1;
+								if (y + i <= 18)
+									weight[x][y + i] += -1;
+								if (x - i >= 0 && y + i <= 18)
+									weight[x - i][y + i] += -1;
+								if (x - i >= 0)
+									weight[x - i][y] += -1;
+								if (x - i >= 0 && y - i >= 0)
+									weight[x - i][y - i] += -1;
+							}
 //							}
 							Memory.points.add(Memory.decisionPoints.pop());
 						}
@@ -156,13 +252,15 @@ public class Calculation {
 //				for (int i = 0; i < Memory.points.size(); i++) {
 //					System.out.println(i+1+" "+(char) (65 + Memory.points.get(i).i) + " " + Memory.points.get(i).j);
 //				}
-//				for (int i = 0; i < 19; i++) {
-//					for (int j = 0; j < 19; j++) {
-//						System.out.print("|" + weight[j][i] + "\t");
-//					}
-//					System.out.println("|");
-//				}
-//				System.out.println("---------------------------------------------------");
+				
+				
+				for (int i = 0; i < 19; i++) {
+					for (int j = 0; j < 19; j++) {
+						System.out.print("|" + weight[j][i] + "\t");
+					}
+					System.out.println("|");
+				}
+				System.out.println("---------------------------------------------------");
 
 			} catch (IndexOutOfBoundsException e) {
 			}

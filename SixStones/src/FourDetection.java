@@ -1,12 +1,17 @@
 //gggggss
 public class FourDetection {
 	int[][] endPoint = new int[8][2];
-	boolean[][] otherColor = new boolean [8][6]; 
+	static boolean[][] otherColor = new boolean[8][6];
 	int count[] = new int[8];
-	int count2 = 0;
+	static boolean[] diffColor = new boolean[8];
 
 	public void checkFourDetection(int x, int y) {
-
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 6; j++) {
+				otherColor[i][j] = false;
+			}
+			diffColor[i] = false;
+		}
 //		if (checkHorizontal(x, y) > 2) {
 //			if(GamePanel.bwMatrix[x][y] == 1) {
 //				Calculation.weight[endPoint[2][0]][endPoint[2][1]] = Calculation.black2;
@@ -47,116 +52,111 @@ public class FourDetection {
 //				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.white2;
 //			}  
 //		}
-		
-		
+
 		if (checkHorizontal(x, y) > 3) {
-			if(GamePanel.bwMatrix[x][y] == 1) {
+			if (GamePanel.bwMatrix[x][y] == 1) {
 				Calculation.weight[endPoint[2][0]][endPoint[2][1]] = Calculation.black3;
-				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.black3;				
-			}
-			else if(GamePanel.bwMatrix[x][y] == 2) {
+				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.black3;
+			} else if (GamePanel.bwMatrix[x][y] == 2) {
 				Calculation.weight[endPoint[2][0]][endPoint[2][1]] = Calculation.white3;
-				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.white3;				
+				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.white3;
 			}
 		}
 		if (checkVertical(x, y) > 3) {
-			if(GamePanel.bwMatrix[x][y] == 1) {
+			if (GamePanel.bwMatrix[x][y] == 1) {
 				Calculation.weight[endPoint[0][0]][endPoint[0][1]] = Calculation.black3;
-				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.black3;				
-			}
-			else if(GamePanel.bwMatrix[x][y] == 2) {
+				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.black3;
+			} else if (GamePanel.bwMatrix[x][y] == 2) {
 				Calculation.weight[endPoint[0][0]][endPoint[0][1]] = Calculation.white3;
-				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.white3;				
+				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.white3;
 			}
 		}
 		if (checkDiagonal(x, y) > 3) {
-			if(GamePanel.bwMatrix[x][y] == 1) {                                              
+			if (GamePanel.bwMatrix[x][y] == 1) {
 				Calculation.weight[endPoint[7][0]][endPoint[7][1]] = Calculation.black3;
 				Calculation.weight[endPoint[3][0]][endPoint[3][1]] = Calculation.black3;
-			}
-			else if(GamePanel.bwMatrix[x][y] == 2) {                                         
+			} else if (GamePanel.bwMatrix[x][y] == 2) {
 				Calculation.weight[endPoint[7][0]][endPoint[7][1]] = Calculation.white3;
 				Calculation.weight[endPoint[3][0]][endPoint[3][1]] = Calculation.white3;
-			}  
+			}
 		}
 		if (checkReverseDiagonal(x, y) > 3) {
-			if(GamePanel.bwMatrix[x][y] == 1) {                                              
+			if (GamePanel.bwMatrix[x][y] == 1) {
 				Calculation.weight[endPoint[5][0]][endPoint[5][1]] = Calculation.black3;
 				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.black3;
-			}               
-			else if(GamePanel.bwMatrix[x][y] == 2) {                                         
+			} else if (GamePanel.bwMatrix[x][y] == 2) {
 				Calculation.weight[endPoint[5][0]][endPoint[5][1]] = Calculation.white3;
 				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.white3;
-			}  
+			}
 		}
 
-		
 		if (checkHorizontal(x, y) > 4) {
-			if(GamePanel.bwMatrix[x][y] == 1) {
+			if (GamePanel.bwMatrix[x][y] == 1) {
 				Calculation.weight[endPoint[2][0]][endPoint[2][1]] = Calculation.blackWeight;
-				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.blackWeight;				
-			}
-			else if(GamePanel.bwMatrix[x][y] == 2) {
+				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.blackWeight;
+			} else if (GamePanel.bwMatrix[x][y] == 2) {
 				Calculation.weight[endPoint[2][0]][endPoint[2][1]] = Calculation.whiteWeight;
-				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.whiteWeight;				
+				Calculation.weight[endPoint[6][0]][endPoint[6][1]] = Calculation.whiteWeight;
 			}
 		}
 		if (checkVertical(x, y) > 4) {
-			if(GamePanel.bwMatrix[x][y] == 1) {
+			if (GamePanel.bwMatrix[x][y] == 1) {
 				Calculation.weight[endPoint[0][0]][endPoint[0][1]] = Calculation.blackWeight;
-				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.blackWeight;				
-			}
-			else if(GamePanel.bwMatrix[x][y] == 2) {
+				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.blackWeight;
+			} else if (GamePanel.bwMatrix[x][y] == 2) {
 				Calculation.weight[endPoint[0][0]][endPoint[0][1]] = Calculation.whiteWeight;
-				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.whiteWeight;				
+				Calculation.weight[endPoint[4][0]][endPoint[4][1]] = Calculation.whiteWeight;
 			}
 		}
 		if (checkDiagonal(x, y) > 4) {
-			if(GamePanel.bwMatrix[x][y] == 1) {                                              
+			if (GamePanel.bwMatrix[x][y] == 1) {
 				Calculation.weight[endPoint[7][0]][endPoint[7][1]] = Calculation.blackWeight;
 				Calculation.weight[endPoint[3][0]][endPoint[3][1]] = Calculation.blackWeight;
-			}                                                                                
-			else if(GamePanel.bwMatrix[x][y] == 2) {                                         
+			} else if (GamePanel.bwMatrix[x][y] == 2) {
 				Calculation.weight[endPoint[7][0]][endPoint[7][1]] = Calculation.whiteWeight;
 				Calculation.weight[endPoint[3][0]][endPoint[3][1]] = Calculation.whiteWeight;
-			}                                                                                
+			}
 		}
 		if (checkReverseDiagonal(x, y) > 4) {
-			if(GamePanel.bwMatrix[x][y] == 1) {                                              
+			if (GamePanel.bwMatrix[x][y] == 1) {
 				Calculation.weight[endPoint[5][0]][endPoint[5][1]] = Calculation.blackWeight;
 				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.blackWeight;
-			}                                                                                
-			else if(GamePanel.bwMatrix[x][y] == 2) {                                         
+			} else if (GamePanel.bwMatrix[x][y] == 2) {
 				Calculation.weight[endPoint[5][0]][endPoint[5][1]] = Calculation.whiteWeight;
 				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.whiteWeight;
-			}                                                                                
-		}
-		checkSixRight(x, y, GamePanel.bwMatrix[x][y], count[2]);
-		checkSixLeft(x, y, GamePanel.bwMatrix[x][y], count[6]);
-		checkSixUp(x, y, GamePanel.bwMatrix[x][y], count[0]);
-		checkSixDown(x, y, GamePanel.bwMatrix[x][y], count[4]);
-		checkSixLRD(x, y, GamePanel.bwMatrix[x][y], count[3]);
-		checkSixULU(x, y, GamePanel.bwMatrix[x][y], count[7]);
-		checkSixURU(x, y, GamePanel.bwMatrix[x][y], count[1]);
-		checkSixLLD(x, y, GamePanel.bwMatrix[x][y], count[5]);
-		
-		
-		for (int i = 0; i < otherColor.length; i++) {
-			for (int j = 0; j < otherColor[0].length; j++) {
-				System.out.print(otherColor[j][i]+"\t");
 			}
-			System.out.println();
+		}
+		System.out.println("asdfasdfasdf");
+		if (((Memory.points.size() + 1) / 2) % 2 == 0) {
+//			checkSixUp(x, y, GamePanel.bwMatrix[x][y], count[0]);
+//			checkSixURU(x, y, GamePanel.bwMatrix[x][y], count[1]);
+//			checkSixRight(x, y, GamePanel.bwMatrix[x][y], count[2]);
+//			checkSixLRD(x, y, GamePanel.bwMatrix[x][y], count[3]);
+//			checkSixDown(x, y, GamePanel.bwMatrix[x][y], count[4]);
+//			checkSixLLD(x, y, GamePanel.bwMatrix[x][y], count[5]);
+//			checkSixLeft(x, y, GamePanel.bwMatrix[x][y], count[6]);
+//			checkSixULU(x, y, GamePanel.bwMatrix[x][y], count[7]);
+		}
+
+//		for (int i = 0; i < 8; i++) {
+//			System.out.print(i + "방향 :");
+//			for (int j = 0; j < otherColor[0].length; j++) {
+//				System.out.print(otherColor[i][j] + "\t");
+//			}
+//			System.out.println();
+//		}
+		for (int i = 0; i < 8; i++) {
+			System.out.println(diffColor[i]);
 		}
 		System.out.println("___________________________________");
+		
+		
 //		checkSixLeft(x, y, GamePanel.bwMatrix[x][y], count[6]);
-		
-		
+
 	}
 
-
-
 	// vertical check
-	private int checkVertical(int x, int y) {		
+	private int checkVertical(int x, int y) {
 		return checkUp(x, y, GamePanel.bwMatrix[x][y]) + checkDown(x, y, GamePanel.bwMatrix[x][y]);
 	}
 
@@ -208,7 +208,7 @@ public class FourDetection {
 	private int checkLeft(int x, int y, int stoneColor) {
 		try {
 			if (GamePanel.bwMatrix[x][y] != stoneColor) {
-				
+
 				endPoint[6][0] = x;
 				endPoint[6][1] = y;
 				return 0;
@@ -280,93 +280,98 @@ public class FourDetection {
 			return 0;
 		}
 	}
-	
+
 	/////////////////////////////////////////////////////////////////////
-	
-	private int checkSixRight(int x, int y, int stoneColor, int count) {
-		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
-			System.out.println("확인 : " + x + " " + y);
-			otherColor[2][count] = true;
-//			return 0;
-			
-		}
-		if(count > 4) {
-			return 0;
-		}
-		return checkSixRight(x+1, y, stoneColor, count+1);
-	}
-	
-	private int checkSixLeft(int x, int y, int stoneColor, int count) {
-		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
-			otherColor[6][count] = true;
-//			return 0;
-		}
-		if(count > 4) {
-			return 0;
-		}
-		return checkSixLeft(x-1, y, stoneColor, count+1);
-	}
-	
+
 	private int checkSixUp(int x, int y, int stoneColor, int count) {
-		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+		if (GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
 			otherColor[0][count] = true;
-//			return 0;
+			diffColor[0] = true;
 		}
-		if(count > 4) {
+		if (count > 4) {
 			return 0;
 		}
-		return checkSixUp(x, y-1, stoneColor, count+1);
-	}
-	
-	private int checkSixDown(int x, int y, int stoneColor, int count) {
-		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
-			otherColor[4][count] = true;
-//			return 0;
-		}
-		if(count > 4) {
-			return 0;
-		}
-		return checkSixDown(x, y+1, stoneColor, count+1);
-	}
-	
-	private int checkSixLRD(int x, int y, int stoneColor, int count) {
-		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
-			otherColor[3][count] = true;
-//			return 0;
-		}
-		if(count > 4) {
-			return 0;
-		}
-		return checkSixLRD(x+1, y+1, stoneColor, count+1);
-	}
-	private int checkSixULU(int x, int y, int stoneColor, int count) {
-		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
-			otherColor[7][count] = true;
-//			return 0;
-		}
-		if(count > 4) {
-			return 0;
-		}
-		return checkSixULU(x-1, y-1, stoneColor, count+1);
+		return checkSixUp(x, y - 1, stoneColor, count + 1);
 	}
 	private int checkSixURU(int x, int y, int stoneColor, int count) {
-		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+		if (GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
 			otherColor[1][count] = true;
-//			return 0;
+			diffColor[1] = true;
 		}
-		if(count > 4) {
+		if (count > 4) {
 			return 0;
 		}
-		return checkSixURU(x+1, y-1, stoneColor, count+1);
+		return checkSixURU(x + 1, y - 1, stoneColor, count + 1);
 	}
+	private int checkSixRight(int x, int y, int stoneColor, int count) {
+		if (GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			System.out.println("확인 : " + x + " " + y);
+			otherColor[2][count] = true;
+			diffColor[2] = true;
+		}
+		if (count > 4) {
+			return 0;
+		}
+		return checkSixRight(x + 1, y, stoneColor, count + 1);
+	}
+
+
+	private int checkSixLRD(int x, int y, int stoneColor, int count) {
+		if (GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			otherColor[3][count] = true;
+			diffColor[3] = true;
+		}
+		if (count > 4) {
+			return 0;
+		}
+		return checkSixLRD(x + 1, y + 1, stoneColor, count + 1);
+	}
+
+	private int checkSixDown(int x, int y, int stoneColor, int count) {
+		if (GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			System.out.println("hello");
+			otherColor[4][count] = true;
+			diffColor[4] = true;
+		}
+		if (count > 4) {
+			return 0;
+		}
+		return checkSixDown(x, y + 1, stoneColor, count + 1);
+	}
+
 	private int checkSixLLD(int x, int y, int stoneColor, int count) {
-		if(GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+		if (GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
 			otherColor[5][count] = true;
-//			return 0;
+			diffColor[5] = true;
 		}
-		if(count > 4) {
+		if (count > 4) {
 			return 0;
 		}
-		return checkSixLLD(x-1, y+1, stoneColor, count+1);
+		return checkSixLLD(x - 1, y + 1, stoneColor, count + 1);
 	}
+
+	private int checkSixLeft(int x, int y, int stoneColor, int count) {
+		if (GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			otherColor[6][count] = true;
+			diffColor[6] = true;
+		}
+		if (count > 4) {
+			return 0;
+		}
+		return checkSixLeft(x - 1, y, stoneColor, count + 1);
+	}
+	private int checkSixULU(int x, int y, int stoneColor, int count) {
+		if (GamePanel.bwMatrix[x][y] != stoneColor && GamePanel.bwMatrix[x][y] != -1) {
+			otherColor[7][count] = true;
+			diffColor[7] = true;
+		}
+		if (count > 4) {
+			return 0;
+		}
+		return checkSixULU(x - 1, y - 1, stoneColor, count + 1);
+	}
+
+	
+
+	
 }
