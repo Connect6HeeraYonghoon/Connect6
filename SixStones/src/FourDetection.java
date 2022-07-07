@@ -1,4 +1,4 @@
-//몰루랄라
+//ggggg
 public class FourDetection {
 	int[][] endPoint = new int[8][2];
 
