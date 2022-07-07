@@ -63,6 +63,12 @@ public class Frame extends JFrame{
 						GamePanel.bwMatrix[i][j] = -1;
 					}
 				}
+				for (int i = 0; i < Calculation.weight.length; i++) {
+					for (int j = 0; j < Calculation.weight.length; j++) {
+						Calculation.weight[i][j] = 0;
+						Calculation.weightStatus[i][j] = 0;
+					}
+				}
 			}
 		});
 		

@@ -1,11 +1,10 @@
 import java.awt.Color;
-import java.util.ArrayList;
 
 public class Calculation {
 	Memory decisionPoints = new Memory();
 	Stones stone;
 	static int[][] weight = new int[19][19];
-	int[][] weightStatus = new int[19][19]; // 없으면 0이고,검은색 1, 흰색 2, 착수 3
+	static int[][] weightStatus = new int[19][19]; // 없으면 0이고,검은색 1, 흰색 2, 착수 3
 	FourDetection fourDetection = new FourDetection();
 	final static int blackStone = 200;
 	final static int whiteStone = 300;
@@ -112,8 +111,8 @@ public class Calculation {
 					for (int j = 0; j < weight.length; j++) {
 						if (min == weight[i][j]) {
 							decisionCount++;
-//							System.out.println("데이터 넣기");
 							Memory.decisionPoints.add(new Stones(i, j, Color.BLACK, false));
+
 //							System.out.println(decisionCount + " 가능한 곳 " + (char) (i + 65) + " " + j);
 //							System.out.println(i + " " + j);
 						}
@@ -127,7 +126,7 @@ public class Calculation {
 								x = Memory.decisionPoints.peek().i;
 								y = Memory.decisionPoints.peek().j;
 								weight[x][y] = blackStone;
-								
+//								
 								for (int i = 1; i < 6; i++) {
 									if (y - i >= 0)
 										weight[x][y - i] += -1;
