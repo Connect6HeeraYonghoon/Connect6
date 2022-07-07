@@ -1,9 +1,11 @@
 import java.awt.Color;
+
 import java.awt.Font;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
 
 public class Calculation {
 	Memory decisionPoints = new Memory();
@@ -202,7 +204,9 @@ public class Calculation {
 					}
 				}
 				
+
 				min = weightSelect(min);
+
 
 				decisionCount = 0;
 				
@@ -284,7 +288,7 @@ public class Calculation {
 		int y = Memory.points.get(Memory.points.size() - 1).j;
 		
 		if (((Memory.points.size() + 1) / 2) % 2 == 0) {
-			System.out.println("asdfasdf");
+
 			for (int i = 1; i < 6; i++) {
 				if (weight[x][y - i] == min) {
 					weight[x][y - i] = min - 10;
@@ -319,7 +323,7 @@ public class Calculation {
 					return min-10;
 				}
 			}
-		}
+//		}
 		
 		return min;
 	}
