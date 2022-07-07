@@ -27,10 +27,9 @@ public class Calculation {
 
 	public void doCalculation() {
 
-		int min=100000000;
+		int min = 100000000;
 		int x = Memory.points.get(Memory.points.size() - 1).i;
 		int y = Memory.points.get(Memory.points.size() - 1).j;
-		
 
 		if (Memory.points.size() <= Frame.blockCount) {
 			weightStatus[x][y] = 3;
@@ -39,7 +38,7 @@ public class Calculation {
 			try {
 				if (Memory.points.get(Memory.points.size() - 1).color == Color.BLACK) { // 검은색
 					for (int i = 1; i < 6; i++) {
-						if (y - i >= 0 )
+						if (y - i >= 0)
 							weight[x][y - i] += -1;
 						if (x + i <= 18 && y - i >= 0)
 							weight[x + i][y - i] += -1;
@@ -62,7 +61,7 @@ public class Calculation {
 
 				} else if (Memory.points.get(Memory.points.size() - 1).color == Color.WHITE) {// 흰색
 					for (int i = 1; i < 6; i++) {
-						if (y - i >= 0 )
+						if (y - i >= 0)
 							weight[x][y - i] += 1;
 						if (x + i <= 18 && y - i >= 0)
 							weight[x + i][y - i] += 1;
@@ -83,9 +82,9 @@ public class Calculation {
 					weightStatus[x][y] = 2;
 					weight[x][y] = whiteStone;
 				}
-				
+
 				fourDetection.checkFourDetection(x, y);
-				
+
 				if (Memory.points.size() > 2) {
 					for (int i = 0; i < 19; i++) {
 						for (int j = 0; j < 19; j++) {
@@ -107,7 +106,7 @@ public class Calculation {
 						}
 					}
 				}
-				
+
 				decisionCount = 0;
 				for (int i = 0; i < weight.length; i++) {
 					for (int j = 0; j < weight.length; j++) {
@@ -120,31 +119,54 @@ public class Calculation {
 						}
 					}
 				}
-				if(((Memory.points.size() + 1) / 2) % 2 == 0) {
-					while(!Memory.decisionPoints.isEmpty()) {
-						Memory.points.add(Memory.decisionPoints.pop());
-					}					
+				if (decisionCount < 3) {
+					if (((Memory.points.size() + 1) / 2) % 2 == 0) {
+						while (!Memory.decisionPoints.isEmpty()) {
+//							if(Memory.points.peek().color == Color.BLACK) {
+								x = Memory.points.peek().i+1;
+								y = Memory.points.peek().j+1;
+								weight[x][y] = blackStone;
+								
+								for (int i = 1; i < 6; i++) {
+									if (y - i >= 0)
+										weight[x][y - i] += -1;
+									if (x + i <= 18 && y - i >= 0)
+										weight[x + i][y - i] += -1;
+									if (x + i <= 18)
+										weight[x + i][y] += -1;
+									if (x + i <= 18 && y + i <= 18)
+										weight[x + i][y + i] += -1;
+									if (y + i <= 18)
+										weight[x][y + i] += -1;
+									if (x - i >= 0 && y + i <= 18)
+										weight[x - i][y + i] += -1;
+									if (x - i >= 0)
+										weight[x - i][y] += -1;
+									if (x - i >= 0 && y - i >= 0)
+										weight[x - i][y - i] += -1;
+								}
+//							}
+							Memory.points.add(Memory.decisionPoints.pop());
+						}
+					}
+
 				}
-				System.out.println("POP이후 : "+ Memory.decisionPoints.size() );
-				for (int i = 0; i < Memory.decisionPoints.size(); i++) {
-					System.out.println(Memory.decisionPoints.get(i).i + " " + Memory.decisionPoints.get(i).j );
-				}
-				
+
 				Memory.decisionPoints.clear();
 				for (int i = 0; i < Memory.points.size(); i++) {
-					System.out.println((char) (65+Memory.points.get(i).i) + " " + Memory.points.get(i).j );
+					System.out.println(i+1+" "+(char) (65 + Memory.points.get(i).i) + " " + Memory.points.get(i).j);
 				}
-//				for (int i = 0; i < 19; i++) {
-//					for (int j = 0; j < 19; j++) {
-//						System.out.print("|" + weight[j][i] + "\t");
-//					}
-//					System.out.println("|");
-//				}
-//				System.out.println("---------------------------------------------------");
+				for (int i = 0; i < 19; i++) {
+					for (int j = 0; j < 19; j++) {
+						System.out.print("|" + weight[j][i] + "\t");
+					}
+					System.out.println("|");
+				}
+				System.out.println("---------------------------------------------------");
 
 			} catch (IndexOutOfBoundsException e) {
 			}
 		}
-		
+
 	}
 }
