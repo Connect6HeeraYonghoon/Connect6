@@ -202,7 +202,7 @@ public class Calculation {
 					}
 				}
 				
-				weightSelect(min);
+				min = weightSelect(min);
 
 				decisionCount = 0;
 				
@@ -246,6 +246,7 @@ public class Calculation {
 								if (x - i >= 0 && y - i >= 0)
 									weight[x - i][y - i] += -1;
 							}
+							GamePanel.bwMatrix[x][y] = 1;
 //							}
 							Memory.points.add(Memory.decisionPoints.pop());
 						}
@@ -265,6 +266,7 @@ public class Calculation {
 				for (int i = 0; i < 19; i++) {
 					for (int j = 0; j < 19; j++) {
 						System.out.print("|" + weight[j][i] + "\t");
+//						System.out.print("|" + GamePanel.bwMatrix[j][i] + "\t");
 					}
 					System.out.println("|");
 				}
@@ -277,48 +279,48 @@ public class Calculation {
 
 	}
 	
-	public void weightSelect(int min) {
+	public int weightSelect(int min) {
 		int x = Memory.points.get(Memory.points.size() - 1).i;
 		int y = Memory.points.get(Memory.points.size() - 1).j;
 		
-		
 		if (((Memory.points.size() + 1) / 2) % 2 == 0) {
+			System.out.println("asdfasdf");
 			for (int i = 1; i < 6; i++) {
 				if (weight[x][y - i] == min) {
 					weight[x][y - i] = min - 10;
-					return;
+					return min-10;
 				}
 				if (weight[x + i][y - i] == min) {
 					weight[x + i][y - i] = min - 10;
-					return;
+					return min-10;
 				}
 				if (weight[x + i][y] == min) {
 					weight[x + i][y] = min - 10;
-					return ;
+					return min-10;
 				}
 				if (weight[x + i][y + i] == min) {
 					weight[x + i][y + i] = min - 10;
-					return ;
+					return min-10;
 				}
 				if (weight[x][y + i] == min) {
 					weight[x][y + i] = min -10;
-					return;
+					return min-10;
 				}
 				if (weight[x - i][y + i] == min) {
 					weight[x - i][y + i] = min - 10;
-					return ;
+					return min-10;
 				}
 				if (weight[x - i][y] == min) {
 					weight[x - i][y] = min - 10;
-					return ;
+					return min-10;
 				}
 				if (weight[x - i][y - i] == min ) {
 					weight[x - i][y - i] = min - 10;
-					return ;
+					return min-10;
 				}
 			}
 		}
 		
-		return;
+		return min;
 	}
 }

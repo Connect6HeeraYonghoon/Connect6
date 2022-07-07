@@ -130,16 +130,16 @@ public class FourDetection {
 			}                                                                                
 		}
 		
-		if(((Memory.points.size() + 1) / 2) % 2 == 0) {
-			checkSixRight(x, y, GamePanel.bwMatrix[x][y], count[2]);
-			checkSixLeft(x, y, GamePanel.bwMatrix[x][y], count[6]);
-			checkSixUp(x, y, GamePanel.bwMatrix[x][y], count[0]);
-			checkSixDown(x, y, GamePanel.bwMatrix[x][y], count[4]);
-			checkSixLRD(x, y, GamePanel.bwMatrix[x][y], count[3]);
-			checkSixULU(x, y, GamePanel.bwMatrix[x][y], count[7]);
-			checkSixURU(x, y, GamePanel.bwMatrix[x][y], count[1]);
-			checkSixLLD(x, y, GamePanel.bwMatrix[x][y], count[5]);
-		}
+//		if(((Memory.points.size() + 1) / 2) % 2 == 0) {
+//			checkSixRight(x, y, GamePanel.bwMatrix[x][y], count[2]);
+//			checkSixLeft(x, y, GamePanel.bwMatrix[x][y], count[6]);
+//			checkSixUp(x, y, GamePanel.bwMatrix[x][y], count[0]);
+//			checkSixDown(x, y, GamePanel.bwMatrix[x][y], count[4]);
+//			checkSixLRD(x, y, GamePanel.bwMatrix[x][y], count[3]);
+//			checkSixULU(x, y, GamePanel.bwMatrix[x][y], count[7]);
+//			checkSixURU(x, y, GamePanel.bwMatrix[x][y], count[1]);
+//			checkSixLLD(x, y, GamePanel.bwMatrix[x][y], count[5]);
+//		}
 		
 		
 		

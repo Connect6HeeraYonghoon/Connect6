@@ -127,6 +127,7 @@ public class GamePanel extends JPanel {
 								}
 							}
 							calculation.doCalculation();
+							calculation.doCalculation();
 							result = winDetection.detectWinner(i, j);
 						}
 					}
