@@ -1,4 +1,4 @@
-//ggggg
+//gggggss
 public class FourDetection {
 	int[][] endPoint = new int[8][2];
 
