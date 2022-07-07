@@ -136,6 +136,10 @@ public class FourDetection {
 		checkSixUp(x, y, GamePanel.bwMatrix[x][y], count[0]);
 		checkSixDown(x, y, GamePanel.bwMatrix[x][y], count[4]);
 		checkSixLRD(x, y, GamePanel.bwMatrix[x][y], count[3]);
+		checkSixULU(x, y, GamePanel.bwMatrix[x][y], count[7]);
+		checkSixURU(x, y, GamePanel.bwMatrix[x][y], count[1]);
+		checkSixLLD(x, y, GamePanel.bwMatrix[x][y], count[5]);
+		
 		
 		for (int i = 0; i < otherColor.length; i++) {
 			for (int j = 0; j < otherColor[0].length; j++) {
