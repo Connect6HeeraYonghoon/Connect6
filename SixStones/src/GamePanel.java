@@ -127,10 +127,13 @@ public class GamePanel extends JPanel {
 								}
 							}
 							calculation.doCalculation();
+							calculation.doCalculation();
+							result = winDetection.detectWinner(i, j);
 						}
 					}
 				}
-				System.out.println("Îèå Í∞ØÏàò : " + Memory.points.size());
+				
+				System.out.println("µπ ∞πºˆ : " + Memory.points.size());
 				System.out.println("---------------------------------------------------");
 				repaint();
 				
