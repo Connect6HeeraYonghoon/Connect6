@@ -112,10 +112,8 @@ public class Calculation {
 					for (int j = 0; j < weight.length; j++) {
 						if (min == weight[i][j]) {
 							decisionCount++;
-//							System.out.println("데이터 넣기");
 							Memory.decisionPoints.add(new Stones(i, j, Color.BLACK, false));
-							System.out.println(decisionCount + " 가능한 곳 " + (char) (i + 65) + " " + j);
-//							System.out.println(i + " " + j);
+							System.out.println(decisionCount + " 가능한 곳 " + i + " " + j);
 						}
 					}
 				}
@@ -123,10 +121,11 @@ public class Calculation {
 					if (((Memory.points.size() + 1) / 2) % 2 == 0) {
 						while (!Memory.decisionPoints.isEmpty()) {
 //							if(Memory.points.peek().color == Color.BLACK) {
-								x = Memory.points.peek().i+1;
-								y = Memory.points.peek().j+1;
+								x = Memory.decisionPoints.peek().i;
+								y = Memory.decisionPoints.peek().j;
+								System.out.println("메모리에 들어있는 값 : " + x + " " + y);
 								weight[x][y] = blackStone;
-								
+//								
 								for (int i = 1; i < 6; i++) {
 									if (y - i >= 0)
 										weight[x][y - i] += -1;
