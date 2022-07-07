@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.util.ArrayList;
 
 public class Calculation {
 	Memory decisionPoints = new Memory();
@@ -108,6 +107,7 @@ public class Calculation {
 				}
 				
 				weightSelect(min);
+				
 
 				decisionCount = 0;
 				
@@ -182,7 +182,7 @@ public class Calculation {
 		int y = Memory.points.get(Memory.points.size() - 1).j;
 		
 		
-		if (((Memory.points.size() + 1) / 2) % 2 == 0) {
+//		if (((Memory.points.size() + 1) / 2) % 2 == 0) {
 			for (int i = 1; i < 6; i++) {
 				if (weight[x][y - i] == min) {
 					weight[x][y - i] = min - 10;
@@ -217,7 +217,7 @@ public class Calculation {
 					return ;
 				}
 			}
-		}
+//		}
 		
 		return;
 	}
