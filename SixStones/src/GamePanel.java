@@ -127,8 +127,9 @@ public class GamePanel extends JPanel {
 								}
 							}
 							calculation.doCalculation();
+							result = winDetection.detectWinner(Memory.points.get(Memory.points.size()-1).i, Memory.points.get(Memory.points.size()-1).j);
 							calculation.doCalculation();
-							result = winDetection.detectWinner(i, j);
+							result = winDetection.detectWinner(Memory.points.get(Memory.points.size()-1).i, Memory.points.get(Memory.points.size()-1).j);
 						}
 					}
 				}
