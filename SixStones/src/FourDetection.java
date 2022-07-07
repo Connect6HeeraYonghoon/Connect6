@@ -1,4 +1,4 @@
-//�������
+//몰루랄라
 public class FourDetection {
 	int[][] endPoint = new int[8][2];
 
@@ -85,6 +85,7 @@ public class FourDetection {
 				Calculation.weight[endPoint[1][0]][endPoint[1][1]] = Calculation.white3;
 			}  
 		}
+
 		
 		if (checkHorizontal(x, y) > 4) {
 			if(GamePanel.bwMatrix[x][y] == 1) {
@@ -146,8 +147,7 @@ public class FourDetection {
 			return 0;
 		}
 	}
-	
- 
+
 	private int checkDown(int x, int y, int stoneColor) {
 		try {
 			if (GamePanel.bwMatrix[x][y] != stoneColor) {
