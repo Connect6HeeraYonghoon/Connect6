@@ -9,7 +9,10 @@ public class Calculation {
 	final static int blockStone = 400;
 	final static int blackWeight = -100;
 	final static int whiteWeight = -50;
-	static int min;
+	final static int black2 = -20;
+	final static int black3 = -30;
+	final static int white2 = -15;
+	final static int white3 = -25;
 
 	public Calculation() {
 		for (int i = 0; i < 19; i++)
@@ -20,9 +23,10 @@ public class Calculation {
 	}
 
 	public void doCalculation() {
+		int min=100000000;
 		int x = Memory.points.get(Memory.points.size() - 1).i;
 		int y = Memory.points.get(Memory.points.size() - 1).j;
-		min = 10000000;
+		
 		if (Memory.points.size() <= Frame.blockCount) {
 			weightStatus[x][y] = 3;
 			weight[x][y] = blockStone;
@@ -30,7 +34,7 @@ public class Calculation {
 			try {
 				if (Memory.points.get(Memory.points.size() - 1).color == Color.BLACK) { // 검은색
 					for (int i = 1; i < 6; i++) {
-						if (y - i >= 0)
+						if (y - i >= 0 )
 							weight[x][y - i] += -1;
 						if (x + i <= 18 && y - i >= 0)
 							weight[x + i][y - i] += -1;
