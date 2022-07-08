@@ -33,7 +33,9 @@ public class Calculation {
 			}
 	}
 
-	public void doCalculation() {
+	public void doCalculation() 
+	
+	{
 
 		int min = 100000000;
 		int x = Memory.points.get(Memory.points.size() - 1).i;
@@ -230,7 +232,7 @@ public class Calculation {
 							int j = random.nextInt(18);
 							Memory.points.add(new Stones(i, j, Color.BLACK, false));
 						}else if (((Memory.points.size() + 1 - Frame.blockCount) / 2) % 2 == 1) {
-							while (!Memory.decisionPoints.isEmpty()) {
+//							while (!Memory.decisionPoints.isEmpty()) {
 //							if(Memory.points.peek().color == Color.BLACK) {
 //								System.out.println("메모리에 들어있는 값 : " + Memory.points.peek().i + " " + Memory.points.peek().j);
 								x = Memory.decisionPoints.peek().i;
@@ -258,7 +260,7 @@ public class Calculation {
 								GamePanel.bwMatrix[x][y] = 1;
 //							}
 								Memory.points.add(Memory.decisionPoints.pop());
-							}
+//							}
 						}
 					}else {
 						if (((Memory.points.size() + 1 - Frame.blockCount) / 2) % 2 == 0) {
@@ -269,14 +271,13 @@ public class Calculation {
 								Memory.points.add(new Stones(i, j, Color.BLACK, false));
 							}else {
 								
-								while (!Memory.decisionPoints.isEmpty()) {
+//								while (!Memory.decisionPoints.isEmpty()) {
 //							if(Memory.points.peek().color == Color.BLACK) {
 //								System.out.println("메모리에 들어있는 값 : " + Memory.points.peek().i + " " + Memory.points.peek().j);
 									x = Memory.decisionPoints.peek().i;
 									y = Memory.decisionPoints.peek().j;
 									weight[x][y] = blackStone;
-									GamePanel.bwMatrix[x][y] = 1;
-									Memory.points.add(Memory.decisionPoints.pop());
+//								
 									for (int i = 1; i < 6; i++) {
 										if (y - i >= 0)
 											weight[x][y - i] += -1;
@@ -295,9 +296,10 @@ public class Calculation {
 										if (x - i >= 0 && y - i >= 0)
 											weight[x - i][y - i] += -1;
 									}
-									
+									GamePanel.bwMatrix[x][y] = 1;
+									Memory.points.add(Memory.decisionPoints.pop());
 								}
-							}
+//							}
 						}
 					}
 
@@ -329,7 +331,7 @@ public class Calculation {
 	public int weightSelect(int min) {
 		int x = Memory.points.get(Memory.points.size() - 1).i;
 		int y = Memory.points.get(Memory.points.size() - 1).j;
-		if (((Memory.points.size() + 1) / 2) % 2 == 0 || Memory.points.size() == 3) {
+		if (((Memory.points.size() + 1  - Frame.blockCount) / 2) % 2 == 0 || (Memory.points.size() - Frame.blockCount) == 3) {
 			System.out.println(min);
 			for (int i = 1; i < 6; i++) {
 
