@@ -1,11 +1,11 @@
 import java.awt.Color;
 
 import java.awt.Font;
+import java.util.Random;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 
 public class Calculation {
 	Memory decisionPoints = new Memory();
@@ -47,7 +47,7 @@ public class Calculation {
 			try {
 				fourDetection.checkFourDetection(x, y);
 				if (Memory.points.get(Memory.points.size() - 1).color == Color.BLACK) { // 검은색
-					
+
 					System.out.println("------------------");
 					for (int i = 1; i < 6; i++) {
 						if (y - i >= 0) {
@@ -182,7 +182,7 @@ public class Calculation {
 
 //				fourDetection.checkFourDetection(x, y);
 
-				if (Memory.points.size()- Frame.blockCount > 2) {
+				if (Memory.points.size() - Frame.blockCount > 2) {
 					for (int i = 0; i < 19; i++) {
 						for (int j = 0; j < 19; j++) {
 							if (weightStatus[i][j] == 1) {
@@ -203,13 +203,12 @@ public class Calculation {
 						}
 					}
 				}
-				
 
 				min = weightSelect(min);
-
-
-				decisionCount = 0;
 				
+				
+				decisionCount = 0;
+
 				for (int i = 0; i < weight.length; i++) {
 					for (int j = 0; j < weight.length; j++) {
 						if (min == weight[i][j]) {
@@ -222,37 +221,83 @@ public class Calculation {
 						}
 					}
 				}
-				
+				System.out.println("계산 가능한 곳 : " + decisionCount);
 				if (decisionCount < 3) {
-					if (((Memory.points.size() + 1- Frame.blockCount) / 2) % 2 == 0) {
-						while (!Memory.decisionPoints.isEmpty()) {
+					if(Frame.swap) {
+						if(decisionCount == 0) {
+							Random random = new Random();
+							int i = random.nextInt(18);
+							int j = random.nextInt(18);
+							Memory.points.add(new Stones(i, j, Color.BLACK, false));
+						}else if (((Memory.points.size() + 1 - Frame.blockCount) / 2) % 2 == 1) {
+							while (!Memory.decisionPoints.isEmpty()) {
 //							if(Memory.points.peek().color == Color.BLACK) {
 //								System.out.println("메모리에 들어있는 값 : " + Memory.points.peek().i + " " + Memory.points.peek().j);
-							x = Memory.decisionPoints.peek().i;
-							y = Memory.decisionPoints.peek().j;
-							weight[x][y] = blackStone;
+								x = Memory.decisionPoints.peek().i;
+								y = Memory.decisionPoints.peek().j;
+								weight[x][y] = blackStone;
 //								
-							for (int i = 1; i < 6; i++) {
-								if (y - i >= 0)
-									weight[x][y - i] += -1;
-								if (x + i <= 18 && y - i >= 0)
-									weight[x + i][y - i] += -1;
-								if (x + i <= 18)
-									weight[x + i][y] += -1;
-								if (x + i <= 18 && y + i <= 18)
-									weight[x + i][y + i] += -1;
-								if (y + i <= 18)
-									weight[x][y + i] += -1;
-								if (x - i >= 0 && y + i <= 18)
-									weight[x - i][y + i] += -1;
-								if (x - i >= 0)
-									weight[x - i][y] += -1;
-								if (x - i >= 0 && y - i >= 0)
-									weight[x - i][y - i] += -1;
-							}
-							GamePanel.bwMatrix[x][y] = 1;
+								for (int i = 1; i < 6; i++) {
+									if (y - i >= 0)
+										weight[x][y - i] += -1;
+									if (x + i <= 18 && y - i >= 0)
+										weight[x + i][y - i] += -1;
+									if (x + i <= 18)
+										weight[x + i][y] += -1;
+									if (x + i <= 18 && y + i <= 18)
+										weight[x + i][y + i] += -1;
+									if (y + i <= 18)
+										weight[x][y + i] += -1;
+									if (x - i >= 0 && y + i <= 18)
+										weight[x - i][y + i] += -1;
+									if (x - i >= 0)
+										weight[x - i][y] += -1;
+									if (x - i >= 0 && y - i >= 0)
+										weight[x - i][y - i] += -1;
+								}
+								GamePanel.bwMatrix[x][y] = 1;
 //							}
-							Memory.points.add(Memory.decisionPoints.pop());
+								Memory.points.add(Memory.decisionPoints.pop());
+							}
+						}
+					}else {
+						if (((Memory.points.size() + 1 - Frame.blockCount) / 2) % 2 == 0) {
+							if(decisionCount == 0) {
+								Random random = new Random();
+								int i = random.nextInt(18);
+								int j = random.nextInt(18);
+								Memory.points.add(new Stones(i, j, Color.BLACK, false));
+							}else {
+								
+								while (!Memory.decisionPoints.isEmpty()) {
+//							if(Memory.points.peek().color == Color.BLACK) {
+//								System.out.println("메모리에 들어있는 값 : " + Memory.points.peek().i + " " + Memory.points.peek().j);
+									x = Memory.decisionPoints.peek().i;
+									y = Memory.decisionPoints.peek().j;
+									weight[x][y] = blackStone;
+									GamePanel.bwMatrix[x][y] = 1;
+									Memory.points.add(Memory.decisionPoints.pop());
+									for (int i = 1; i < 6; i++) {
+										if (y - i >= 0)
+											weight[x][y - i] += -1;
+										if (x + i <= 18 && y - i >= 0)
+											weight[x + i][y - i] += -1;
+										if (x + i <= 18)
+											weight[x + i][y] += -1;
+										if (x + i <= 18 && y + i <= 18)
+											weight[x + i][y + i] += -1;
+										if (y + i <= 18)
+											weight[x][y + i] += -1;
+										if (x - i >= 0 && y + i <= 18)
+											weight[x - i][y + i] += -1;
+										if (x - i >= 0)
+											weight[x - i][y] += -1;
+										if (x - i >= 0 && y - i >= 0)
+											weight[x - i][y - i] += -1;
+									}
+									
+								}
+							}
 						}
 					}
 
@@ -265,8 +310,6 @@ public class Calculation {
 //				}			
 //				int n = (int)Math.random()*(1) + (-5);
 
-				
-				
 				for (int i = 0; i < 19; i++) {
 					for (int j = 0; j < 19; j++) {
 						System.out.print("|" + weight[j][i] + "\t");
@@ -274,7 +317,7 @@ public class Calculation {
 					}
 					System.out.println("|");
 				}
-				
+
 				System.out.println("---------------------------------------------------");
 
 			} catch (IndexOutOfBoundsException e) {
@@ -282,49 +325,81 @@ public class Calculation {
 		}
 
 	}
-	
+
 	public int weightSelect(int min) {
 		int x = Memory.points.get(Memory.points.size() - 1).i;
 		int y = Memory.points.get(Memory.points.size() - 1).j;
-		if (((Memory.points.size() + 1) / 2) % 2 == 0 || Memory.points.size()== 3) {
+		if (((Memory.points.size() + 1) / 2) % 2 == 0 || Memory.points.size() == 3) {
 			System.out.println(min);
 			for (int i = 1; i < 6; i++) {
+
 				if (weight[x][y - i] == min) {
 					weight[x][y - i] = min - 10;
-					return min-10;
+					return min - 10;
 				}
 				if (weight[x + i][y - i] == min) {
 					weight[x + i][y - i] = min - 10;
-					return min-10;
+					return min - 10;
 				}
 				if (weight[x + i][y] == min) {
 					weight[x + i][y] = min - 10;
-					return min-10;
+					return min - 10;
 				}
 				if (weight[x + i][y + i] == min) {
 					weight[x + i][y + i] = min - 10;
-					return min-10;
+					return min - 10;
 				}
 				if (weight[x][y + i] == min) {
-					weight[x][y + i] = min -10;
-					return min-10;
+					weight[x][y + i] = min - 10;
+					return min - 10;
 				}
 				if (weight[x - i][y + i] == min) {
 					weight[x - i][y + i] = min - 10;
-					return min-10;
+					return min - 10;
 				}
 				if (weight[x - i][y] == min) {
 					weight[x - i][y] = min - 10;
-					return min-10;
+					return min - 10;
 				}
-				if (weight[x - i][y - i] == min ) {
+				if (weight[x - i][y - i] == min) {
 					weight[x - i][y - i] = min - 10;
-					return min-10;
+					return min - 10;
 				}
 			}
-			
+			if (weight[x + 1][y - 2] == min) {
+				weight[x + 1][y - 2] = min - 10;
+				return min - 10;
+			}
+			if (weight[x + 2][y - 1] == min) {
+				weight[x + 2][y - 1] = min - 10;
+				return min - 10;
+			}
+			if (weight[x + 2][y + 1] == min) {
+				weight[x + 2][y + 1] = min - 10;
+				return min - 10;
+			}
+			if (weight[x + 1][y + 2] == min) {
+				weight[x + 1][y + 2] = min - 10;
+				return min - 10;
+			}
+			if (weight[x - 2][y + 1] == min) {
+				weight[x - 2][y + 1] = min - 10;
+				return min - 10;
+			}
+			if (weight[x - 1][y + 2] == min) {
+				weight[x - 1][y + 2] = min - 10;
+				return min - 10;
+			}
+			if (weight[x - 1][y - 2] == min) {
+				weight[x - 1][y - 2] = min - 10;
+				return min - 10;
+			}
+			if (weight[x - 2][y - 1] == min) {
+				weight[x - 2][y - 1] = min - 10;
+				return min - 10;
+			}
 		}
-		
+
 		return min;
 	}
 }
