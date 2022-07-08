@@ -274,7 +274,7 @@ public class Calculation {
 					}
 					System.out.println("|");
 				}
-
+				
 				System.out.println("---------------------------------------------------");
 
 			} catch (IndexOutOfBoundsException e) {
@@ -286,9 +286,8 @@ public class Calculation {
 	public int weightSelect(int min) {
 		int x = Memory.points.get(Memory.points.size() - 1).i;
 		int y = Memory.points.get(Memory.points.size() - 1).j;
-		
-		if (((Memory.points.size() + 1) / 2) % 2 == 0) {
-
+		if (((Memory.points.size() + 1) / 2) % 2 == 0 || Memory.points.size()== 3) {
+			System.out.println(min);
 			for (int i = 1; i < 6; i++) {
 				if (weight[x][y - i] == min) {
 					weight[x][y - i] = min - 10;
@@ -323,7 +322,9 @@ public class Calculation {
 					return min-10;
 				}
 			}
+			
 		}
+		
 		return min;
 	}
 }
