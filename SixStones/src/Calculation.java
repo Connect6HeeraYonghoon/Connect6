@@ -269,8 +269,8 @@ public class Calculation {
 				
 				for (int i = 0; i < 19; i++) {
 					for (int j = 0; j < 19; j++) {
-						System.out.print("|" + weight[j][i] + "\t");
-//						System.out.print("|" + GamePanel.bwMatrix[j][i] + "\t");
+//						System.out.print("|" + weight[j][i] + "\t");
+						System.out.print("|" + GamePanel.bwMatrix[j][i] + "\t");
 					}
 					System.out.println("|");
 				}
